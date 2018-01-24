@@ -9,9 +9,43 @@ exports.user_signup = (req, res, next) => {
 };
 
 exports.user_login = (req, res, next) => {
-    return res.status(200).json({
-        message: "login successful"
-    });
+    let sql = 'SELECT * FROM user WHERE user_name =\'' + req.body.email + '\'';
+    sqlConnectionPool.getConnection((err, connection) => {
+        if (err) {
+            return res.status(401).json({
+                message: "Auth failed"
+            });
+        }
+        else {
+            connection.query(sql, (sqlErr, results) => {
+                if (sqlErr) {
+                    console.log(sqlErr);
+                    return res.status(401).json({
+                        message: "Auth failed"
+                    });
+                } else if (results.length > 0 && results[0].user_name == req.body.password) {
+                    const token = jwt.sign(
+                        {
+                            email: results[0].user_email,
+                            userId: results[0].user_id
+                        },
+                        "process.env.JWT_KEY",
+                        {
+                            expiresIn: "1h"
+                        }
+                    );
+                    return res.status(200).json({
+                        message: "Auth successful",
+                        token: token
+                    });
+                }
+            });
+
+        }
+    })
+    // return res.status(200).json({
+    //     message: "login successful"
+    // });
 };
 
 exports.user_delete = (req, res, next) => {

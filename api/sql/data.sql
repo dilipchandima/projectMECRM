@@ -1,18 +1,18 @@
 INSERT INTO user
-    (user_name,user_email,user_address1,user_address2,user_address3,user_role)
+    (user_name,user_email,user_address1,user_address2,user_address3,user_role,user_password)
 VALUES
-    ("jayani","jayani@gmail.com","matara1","kanaththagoda1","kamburugamuwa1",'ADMIN'),
-    ("sumudini","sumudini@gmail.com","matara2","kanaththagoda2","kamburugamuwa2",'USER'),
-    ("dileepa","dileepa@gmail.com","matara3","kanaththagoda3","kamburugamuwa3",'ADMIN'),
-    ("chandima","chandima@gmail.com","matara4","kanaththagoda4","kamburugamuwa4",'USER'),
-    ("dilip","dilip@gmail.com","matara5","kanaththagoda5","kamburugamuwa5",'USER'),
-    ("sumudi","sumudi@gmail.com","matara6","kanaththagoda6","kamburugamuwa6",'USER'),
-    ("manusha","manusha@gmail.com","matara7","kanaththagoda7","kamburugamuwa7",'USER'),
-    ("ashen","ashen@gmail.com","matara8","kanaththagoda8","kamburugamuwa8",'USER'),
-    ("baba","baba@gmail.com","matara9","kanaththagoda9","kamburugamuwa9",'USER'),
-    ("anne","anne@gmail.com","matara10","kanaththagoda10","kamburugamuwa11",'USER');
-	
-	
+    ("jayani","jayani@gmail.com","matara1","kanaththagoda1","kamburugamuwa1",'ADMIN',"abcd"),
+    ("sumudini","sumudini@gmail.com","matara2","kanaththagoda2","kamburugamuwa2",'USER',"efgh"),
+    ("dileepa","dileepa@gmail.com","matara3","kanaththagoda3","kamburugamuwa3",'ADMIN',"ijkl"),
+    ("chandima","chandima@gmail.com","matara4","kanaththagoda4","kamburugamuwa4",'USER',"mnop"),
+    ("dilip","dilip@gmail.com","matara5","kanaththagoda5","kamburugamuwa5",'USER',"qrst"),
+    ("sumudi","sumudi@gmail.com","matara6","kanaththagoda6","kamburugamuwa6",'USER',"uvwx"),
+    ("manusha","manusha@gmail.com","matara7","kanaththagoda7","kamburugamuwa7",'USER',"yzab"),
+    ("ashen","ashen@gmail.com","matara8","kanaththagoda8","kamburugamuwa8",'USER',"cdef"),
+    ("baba","baba@gmail.com","matara9","kanaththagoda9","kamburugamuwa9",'USER',"ghij"),
+    ("anne","anne@gmail.com","matara10","kanaththagoda10","kamburugamuwa11",'USER',"klmn"),
+
+
 INSERT INTO job
 	(job_address,job_discription,job_status,user_id)
 VALUES
@@ -49,7 +49,7 @@ VALUES
 	("engineerAddress31","abcd",'RETAIRE',1),
 	("engineerAddress32","abcd",'WORK',3),
 	("engineerAddress33","abcd",'LEAVE',1);
-   
+
 INSERT INTO note
 	(note_date,note_time,note_description,job_id)
 VALUES

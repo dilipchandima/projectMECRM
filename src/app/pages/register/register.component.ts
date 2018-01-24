@@ -6,7 +6,11 @@ import { Router } from '@angular/router';
     templateUrl: 'register.component.html',
     styleUrls: ['register.component.css']
 })
-
 export class RegisterComponent {
-    constructer() { }
+    constructor(private router: Router) { }
+
+    onSubmit(){
+        console.log("test on submit")
+        this.router.navigate(['../login']);
+    }
 }

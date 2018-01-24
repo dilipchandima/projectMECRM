@@ -10,6 +10,10 @@ import { UserComponent } from './pages/user/user.component';
 
 import { AppRoutingModule } from './app.router.module';
 
+import { AuthService } from './services/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,9 +25,14 @@ import { AppRoutingModule } from './app.router.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap:
     [
       AppComponent,

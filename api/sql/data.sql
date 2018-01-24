@@ -10,7 +10,7 @@ VALUES
     ("manusha","manusha@gmail.com","matara7","kanaththagoda7","kamburugamuwa7",'USER',"yzab"),
     ("ashen","ashen@gmail.com","matara8","kanaththagoda8","kamburugamuwa8",'USER',"cdef"),
     ("baba","baba@gmail.com","matara9","kanaththagoda9","kamburugamuwa9",'USER',"ghij"),
-    ("anne","anne@gmail.com","matara10","kanaththagoda10","kamburugamuwa11",'USER',"klmn"),
+    ("anne","anne@gmail.com","matara10","kanaththagoda10","kamburugamuwa11",'USER',"klmn");
 
 
 INSERT INTO job

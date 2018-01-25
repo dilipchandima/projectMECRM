@@ -4,8 +4,11 @@
             <img class="img-responsive img-rounded" src="assets/img/profile.jpg" alt="">
         </div>
         <div class="col-md-4 col-sm-6">
-            <h3>Dileepa Chandima</h3>
-            <h4>0710711787</h4>
+            <h3>{{user?.user_name}}</h3>
+            <h4>{{user?.user_email}}</h4>
+            <h5>{{user?.user_address1}}</h5>
+            <h5>{{user?.user_address2}}</h5>
+            <h5>{{user?.user_address3}}</h5>
         </div>
         <div class="col-md-6 col-sm-12">
             <div class="account-wall">
@@ -43,11 +46,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Some Address</td>
-                        <td>Description of the job going here</td>
-                        <td>+98 65 765 7654</td>
-                        <td>Quote Request</td>
+                    <tr *ngFor="let job of jobs" (click)="goToNotes(job.job_id)">
+                        <td>{{job?.job_address}}</td>
+                        <td>{{job?.job_discription}}</td>
+                        <td>{{job?.job_status}}</td>
+                        <td>{{job?.job_status}}</td>
                     </tr>
                 </tbody>
             </table>

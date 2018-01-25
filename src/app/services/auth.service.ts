@@ -8,8 +8,13 @@ export class AuthService {
 
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private loginUrl = '/api/user/login';
+    private getUserUrl = '/api/user/'
 
     login(user: any): Observable<any> {
         return this.http.post(this.loginUrl, user, { headers: this.headers });
+    }
+
+    getUser(userId: number): Observable<any> {
+        return this.http.get(this.getUserUrl + userId, { headers: this.headers })
     }
 }

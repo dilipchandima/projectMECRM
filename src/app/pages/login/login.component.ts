@@ -37,8 +37,7 @@ export class LoginComponent {
                 if (res.status === 200) {
                     let obj = JSON.parse(res._body);
                     localStorage.setItem("userRole", obj.userRole);
-                    localStorage.setItem("auth", obj.token);
-                    this.router.navigate(['/user']);
+                    this.router.navigate(['/user'], { queryParams: { userId: obj.userId } });
                 }
             },
             (err) => { console.log(err) });

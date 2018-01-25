@@ -99,12 +99,14 @@ exports.user_login = (req, res, next) => {
                                 expiresIn: "1h"
                             }
                         );
-                        return res.status(200).json({
-                            message: "Auth successful",
-                            userRole: results[0].user_role,
-                            token: token
-                        });
-                    } else{
+                        return res.cookie('CRM_COOKIE', token, { maxAge: 3600 * 24 * 1000 })
+                            .status(200)
+                            .json({
+                                message: "Auth successful",
+                                userRole: results[0].user_role,
+                                userId: results[0].user_id
+                            });
+                    } else {
                         return res.status(401).json({
                             message: "Auth failed"
                         });
@@ -116,12 +118,6 @@ exports.user_login = (req, res, next) => {
     })
 
 };
-
-// exports.user_delete = (req, res, next) => {
-//     return res.status(200).json({
-//         message: "delete successful"
-//     });
-// };
 
 exports.user_getAll = (req, res, next) => {
     sqlConnectionPool.getConnection((err, connection) => {
@@ -143,9 +139,78 @@ exports.user_getAll = (req, res, next) => {
                         message: "retrive successful",
                         data: results
                     });
+                } else {
+                    return res.status(204).json({
+                        message: "No existing Users"
+                    });
                 }
             });
 
         }
     })
 };
+
+exports.user_getById = (req, res, next) => {
+    const id = req.params.id;
+    let sql = 'SELECT * FROM user WHERE user_id =\'' + id + '\'';
+    sqlConnectionPool.getConnection((err, connection) => {
+        if (err) {
+            return res.status(204).json({
+                message: "SQL Error"
+            });
+        }
+        else {
+            connection.query(sql, (sqlErr, results) => {
+                if (sqlErr) {
+                    console.log(sqlErr);
+                    return res.status(204).json({
+                        message: "No existing Users"
+                    });
+                } else if (results.length > 0) {
+                    return res.status(200).json({
+                        message: "retrive successful",
+                        data: results
+                    });
+                } else {
+                    return res.status(204).json({
+                        message: "No existing Users"
+                    });
+                }
+            });
+
+        }
+    })
+};
+
+exports.user_getByName = (req, res, next) => {
+    const id = req.params.name;
+    let sql = 'SELECT * FROM user WHERE user_name =\'' + id + '\'';
+    sqlConnectionPool.getConnection((err, connection) => {
+        if (err) {
+            return res.status(204).json({
+                message: "SQL Error"
+            });
+        }
+        else {
+            connection.query(sql, (sqlErr, results) => {
+                if (sqlErr) {
+                    console.log(sqlErr);
+                    return res.status(204).json({
+                        message: "No existing Users"
+                    });
+                } else if (results.length > 0) {
+                    return res.status(200).json({
+                        message: "retrive successful",
+                        data: results
+                    });
+                } else {
+                    return res.status(204).json({
+                        message: "No existing Users"
+                    });
+                }
+            });
+
+        }
+    })
+};
+

@@ -2,16 +2,20 @@ const express = require('express');
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const path = require('path');
+var cookieParser = require('cookie-parser');
 
 const app = express();
 
 
 const userRoutes = require('./api/routes/user');
+const jobRouts = require('./api/routes/jobs');
+const noteRouts = require('./api/routes/notes');
 
 app.use(morgan("dev"));
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser())
 
 
 // Point static path to dist
@@ -35,6 +39,8 @@ app.use((req, res, next) => {
 
 
 app.use("/api/user", userRoutes);
+app.use("/api/job", jobRouts);
+app.use("/api/note", noteRouts);
 
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));

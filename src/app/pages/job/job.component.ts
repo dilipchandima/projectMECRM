@@ -1,5 +1,7 @@
+import { JobService } from './../../services/job.service';
 import { Component } from "@angular/core";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NoteService } from "../../services/note.service";
 
 @Component({
     selector: 'job',
@@ -8,5 +10,34 @@ import { Router } from '@angular/router';
 })
 
 export class JobComponent {
-    constructer() { }
+    private notes: Array<any>;
+    private job: any;
+
+    constructor(private route: ActivatedRoute,
+        private router: Router,
+        private noteService: NoteService,
+        private jobService: JobService) { }
+
+    ngOnInit() {
+        this.route
+            .queryParams
+            .subscribe(params => {
+                console.log(params);
+
+                this.noteService.getByJobID(params.jobId)
+                    .subscribe((res) => {
+                        this.notes = JSON.parse(res._body).data;
+                        console.log(this.notes);
+                    },
+                    (err) => { console.log(err) });
+
+                    this.jobService.getById(params.jobId)
+                    .subscribe((res) => {
+                        this.job = JSON.parse(res._body).data[0];
+                        console.log(this.job);
+                    },
+                    (err) => { console.log(err) });
+
+            });
+    }
 }

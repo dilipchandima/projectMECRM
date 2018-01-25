@@ -1,3 +1,5 @@
+import { NoteService } from './services/note.service';
+import { JobService } from './services/job.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -31,7 +33,9 @@ import { HttpModule } from '@angular/http';
     ReactiveFormsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    JobService,
+    NoteService
   ],
   bootstrap:
     [

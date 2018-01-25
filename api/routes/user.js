@@ -7,12 +7,11 @@ const storage = multer.diskStorage({
         cb(null, './uploads/');
     },
     filename: function (req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname);
+        cb(null, req.body.email + file.originalname);
     }
 });
 
 const fileFilter = (req, file, cb) => {
-    // reject a file
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
         cb(null, true);
     } else {
@@ -35,7 +34,7 @@ router.post("/login", UserController.user_login);
 router.post("/signup", upload.single('userImage'), UserController.user_signup);
 
 router.get("/getAll", checkAuth, UserController.user_getAll);
-
-// router.delete("/delete/:userId", checkAuth, UserController.user_delete);
+router.get("/:id", checkAuth, UserController.user_getById);
+router.get("/byName/:name", checkAuth, UserController.user_getByName);
 
 module.exports = router;

@@ -4,13 +4,18 @@
             <div class="account-wall">
                 <img class="profile-img" src="assets/img/logo.png" alt="">
                 <form class="form-signin" [formGroup]="_loginForm">
-                    <input type="text" class="form-control" placeholder="Email" required autofocus formControlName="email">
-                    <input type="password" class="form-control" placeholder="Password" required formControlName="password">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="loginUser()">
+
+                    <input type="text" class="form-control form-control-sm" placeholder="Email" required autofocus formControlName="email">
+                    <input type="password" class="form-control form-control-sm" placeholder="Password" required formControlName="password">
+
+                    <button class="btn btn-sm btn-primary btn-block" type="submit" (click)="loginUser()">
                         Sign in</button>
+
+                    <a href="/register" class="text-center new-account">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Create an account </a>
+                        
                 </form>
             </div>
-            <a href="/register" class="text-center new-account">Create an account </a>
         </div>
     </div>
 </div>

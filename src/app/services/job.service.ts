@@ -9,6 +9,7 @@ export class JobService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private getByUserIDUrl = '/api/job/byUserId/'
     private getByIDUrl = '/api/job/'
+    private getAllUrl = '/api/job/getAll'
 
     getByUserID(userId: number): Observable<any> {
         return this.http.get(this.getByUserIDUrl + userId, { headers: this.headers })
@@ -16,5 +17,9 @@ export class JobService {
 
     getById(jobId: number): Observable<any> {
         return this.http.get(this.getByIDUrl + jobId, { headers: this.headers })
+    }
+
+    getAll(): Observable<any> {
+        return this.http.get(this.getAllUrl, { headers: this.headers })
     }
 }

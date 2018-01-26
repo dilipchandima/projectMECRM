@@ -1,1 +1,26 @@
-admin
+<div class="container" style="margin-top: 50px">
+    <div class="row" style="margin-top:20px">
+        <div class="col-md-12 col-sm-12">
+            <h4 class="text-center">User Jobs</h4>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Job Address</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let job of jobs" (click)="goToNotes(job.job_id)">
+                        <td>{{job?.job_address}}</td>
+                        <td>{{job?.job_discription}}</td>
+                        <td>{{job?.job_status}}</td>
+                        <td>{{job?.job_status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

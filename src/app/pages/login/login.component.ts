@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from "../../services/auth.service";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'user-login',
@@ -16,7 +16,7 @@ export class LoginComponent {
     public _loginObj: {
         email: string,
         password: string
-    } = { email: "", password: "" };
+    } = { email: '', password: '' };
 
     constructor(private authServise: AuthService, private router: Router) {
         this.createForm();
@@ -35,11 +35,11 @@ export class LoginComponent {
             .subscribe((res) => {
                 console.log(res, res._body.userRole);
                 if (res.status === 200) {
-                    let obj = JSON.parse(res._body);
-                    localStorage.setItem("userRole", obj.userRole);
+                    const obj = JSON.parse(res._body);
+                    localStorage.setItem('userRole', obj.userRole);
                     this.router.navigate(['/user'], { queryParams: { userId: obj.userId } });
                 }
             },
-            (err) => { console.log(err) });
+            (err) => { console.log(err); });
     }
 }

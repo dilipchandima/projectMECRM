@@ -1,41 +1,51 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-8 col-md-offset-2 " style="margin-top:10px">
-            <div class="account-wall">
-                <h3 class="text-center">Registration</h3>
-                <h4 class="text-center">MANCHESTER ELECTRIC</h4>
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control form-control-sm" id="name" placeholder="Enter Name">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <label for="tel">Phone Number</label>
-                        <input type="text" class="form-control form-control-sm" id="phone" placeholder="Enter Mobile Number">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Address</label>
-                        <input type="text" class="form-control form-control-sm" id="adddress1" placeholder="Enter first address line">
-                        <input type="text" class="form-control form-control-sm" id="adddress2" placeholder="Enter second address line" style="margin-top:3px">
-                        <input type="text" class="form-control form-control-sm" id="adddress3" placeholder="Enter third address line" style="margin-top:3px">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Profile Picture</label>
-                        <input type="file" id="file" class="form-control form-control-sm">
-                        <span class="custom-file-control"></span>
-                    </div>
-                    <button type="button" class="btn btn-primary float-right" (click)="onSubmit()">Submit</button>
-                </form>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-md-offset-2 " style="margin-top:10px">
+      <div class="account-wall">
+        <h3 class="text-center">Registration</h3>
+        <h4 class="text-center">MANCHESTER ELECTRIC</h4>
+        <form #form="ngForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control form-control-sm" id="name" placeholder="Enter Name" required name="name" value="name"
+                   [(ngModel)]="form.name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" value="email"
+                   placeholder="Enter email" name="email" required [(ngModel)]="form.email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="number" class="form-control form-control-sm" id="phone" placeholder="Enter Mobile Number" required [(ngModel)]="form.phone" name="phone" value="phone">
+          </div>
+          <div class="form-group">
+            <label for="address1">Address</label>
+            <input type="text" class="form-control form-control-sm" id="address1" placeholder="Enter first address line"
+                   required [(ngModel)]="form.address1" name="address" value="address1">
+            <input type="text" class="form-control form-control-sm" id="address2" placeholder="Enter second address line"
+                   style="margin-top:3px" required [(ngModel)]="form.address2" name="address" value="address2">
+            <input type="text" class="form-control form-control-sm" id="address3" placeholder="Enter third address line"
+                   style="margin-top:3px" required [(ngModel)]="form.address3" name="address" value="address3">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control form-control-sm" id="password" placeholder="Enter New Password" required [(ngModel)]="form.password" name="password" value="password">
+            <label for="passwordre">Re-Enter Password</label>
+            <input type="password" class="form-control form-control-sm" id="passwordre" placeholder="Enter New Password" required [(ngModel)]="form.passwordre" name="passwordre"  value="passwordre">
+          </div>
+
+          <div class="form-group">
+            <label>Profile Picture</label>
+            <input type="file" name="picture" required (change)="fileChange(input)" #input />
+            <img [attr.src]='file_srcs[0]' alt=""/>
+            <button (click)="picture=''">Clear</button>
+          </div>
+          <button type="Submit" class="btn btn-primary float-right" (click)="onSubmit(form.value)">Submit</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

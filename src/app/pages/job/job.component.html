@@ -1,8 +1,9 @@
 <div class="container" style="margin-top: 50px">
     <div class="row">
         <div class="col-md-4 col-sm-12">
-            <h3>{{job?.job_discription}}</h3>
-            <h4>{{job?.job_address}}</h4>
+            <h3><b>Description: </b>{{job?.job_discription}}</h3>
+            <h4><b>Address: </b>{{job?.job_address}}</h4>
+            <h4><b>Status: </b><span class="status" [ngClass]="{'issued': job?.job_status=='ISSUED', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETE', 'enquiry': job?.job_status=='ENQUIRY'}">{{job?.job_status}}</span></h4>
         </div>
         <div class="col-md-8 col-sm-12">
             <div class="account-wall">
@@ -30,7 +31,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let note of notes">
-                        <td>{{note.note_date}}</td>
+                        <td>{{note.note_date | slice:0:10}}</td>
                         <td>{{note.note_time}}</td>
                         <td>{{note.note_description}}</td>
                     </tr>

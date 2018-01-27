@@ -11,7 +11,7 @@ create table user(
 	user_address3 varchar(255),
 	user_profile_picture LONGBLOB ,
   	user_password  varchar(40),
-	user_role enum ('ADMIN','USER') DEFAULT 'ADMIN' NOT NULL,
+	user_role enum ('ADMIN','USER') DEFAULT 'USER' NOT NULL,
 	PRIMARY KEY(user_id)
 );
 
@@ -19,7 +19,8 @@ create table job(
 	job_id int not null AUTO_INCREMENT,
 	job_address varchar(255),
 	job_discription varchar(250),
-	job_status enum('RETAIRE','WORK','LEAVE') not null,
+	job_phone varchar(250),
+	job_status enum('ENQUIRY','ISSUED','ACCEPTED','SCHEDULED','COMMENCED', 'COMPLETE') not null,
 	user_id int,
 	PRIMARY KEY(job_id),
 	FOREIGN KEY (user_id) REFERENCES user(user_id)

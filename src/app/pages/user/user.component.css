@@ -5,13 +5,19 @@
     margin: 0 auto 10px;
     display: block;
     border-radius: 50%;
+    border: 1px solid #730058;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .account-wall
 {
     margin: 10px;
     padding: 20px;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
+    border: 1px solid #730058;
+    border-top: 3px solid#730058;
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -33,3 +39,44 @@ label{
 }
 
 textarea { resize: vertical; }
+
+.table_container{
+    background-color: #ffffff;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    padding: 15px;
+    
+}
+
+.status{
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.issued{
+    background-color: #7cda3d;
+    border: 1px solid #4e8c25;
+}
+.accepted{
+    background-color: #da37ad;
+    border: 1px solid #932475;
+}
+.scheduled{    background-color: #a316e3;
+    border: 1px solid #7310a0;
+}
+.commenced{
+    background-color: #2dca99;
+    border: 1px solid #228e6c;
+}
+.completed{
+    background-color: #d80a4a;
+    border: 1px solid #a00636;
+}
+
+.enquiry{
+    background-color: #089dd8;
+    border: 1px solid #0574a0;
+}

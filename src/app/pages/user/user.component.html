@@ -1,10 +1,14 @@
 <div class="container" style="margin-top: 50px">
     <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Library</a></li>
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">Library</a>
+        </li>
         <li class="active">Data</li>
     </ol>
-              
+
     <div class="row">
         <div class="col-md-2 col-sm-6">
             <img class="img-responsive img-rounded" src="assets/img/profile.jpg" alt="">
@@ -40,8 +44,7 @@
         </div>
     </div>
     <div class="row" style="margin-top:20px">
-        <div class="col-md-12 col-sm-12">
-            <h4 class="text-center"> Your Jobs</h4>
+        <div class="col-md-12 col-sm-12 table_container">
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -55,8 +58,8 @@
                     <tr *ngFor="let job of jobs" (click)="goToNotes(job.job_id)">
                         <td>{{job?.job_address}}</td>
                         <td>{{job?.job_discription}}</td>
-                        <td>{{job?.job_status}}</td>
-                        <td>{{job?.job_status}}</td>
+                        <td>{{job?.job_phone}}</td>
+                        <td><span class="status" [ngClass]="{'issued': job?.job_status=='ISSUED', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETE', 'enquiry': job?.job_status=='ENQUIRY'}">{{job?.job_status}}</span></td>
                     </tr>
                 </tbody>
             </table>

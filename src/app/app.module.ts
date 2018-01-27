@@ -15,8 +15,9 @@ import { AppRoutingModule } from './app.router.module';
 import { AuthService } from './services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {LoginRouteGuard} from './services/router.guard';
-import {RegistrationService} from "./services/registration.service";
+import { LoginRouteGuard } from './services/router.guard';
+import { RegistrationService } from "./services/registration.service";
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {RegistrationService} from "./services/registration.service";
     JobService,
     NoteService,
     LoginRouteGuard,
-    RegistrationService
+    RegistrationService,
+    CookieService
   ],
   bootstrap:
     [

@@ -33,7 +33,7 @@ export class LoginComponent {
         console.log(this._loginForm.value);
         this.authServise.login(this._loginForm.value)
             .subscribe((res) => {
-                console.log(res, res._body.userRole)
+                console.log(res, res._body.userRole);
                 if (res.status === 200) {
                     let obj = JSON.parse(res._body);
                     localStorage.setItem("userRole", obj.userRole);

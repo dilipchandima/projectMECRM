@@ -6,13 +6,14 @@ import { RegisterComponent } from './pages/register/register.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { JobComponent } from './pages/job/job.component';
 import { UserComponent } from './pages/user/user.component';
+import {LoginRouteGuard} from "./services/router.guard";
 
 const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'jobs', component: JobComponent },
-    { path: 'user', component: UserComponent },
-    { path: 'dashboard', component: AdminDashboardComponent },
+    { path: 'jobs', component: JobComponent , canActivate: [LoginRouteGuard]},
+    { path: 'user', component: UserComponent , canActivate: [LoginRouteGuard]},
+    { path: 'dashboard', component: AdminDashboardComponent , canActivate: [LoginRouteGuard] },
     { path: '**', redirectTo:'login', pathMatch: 'full' }
 ]
 

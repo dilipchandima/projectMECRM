@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app.router.module';
 import { AuthService } from './services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {LoginRouteGuard} from './services/router.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpModule } from '@angular/http';
   providers: [
     AuthService,
     JobService,
-    NoteService
+    NoteService,
+    LoginRouteGuard
   ],
   bootstrap:
     [

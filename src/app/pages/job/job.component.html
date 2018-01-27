@@ -9,9 +9,9 @@
             <div class="account-wall">
                 <h5>Add Note</h5>
                 <form>
-                    <div class="form-group">
+                    <div class="form-group" [formGroup]="_form">
                         <label for="exampleInputEmail1">Description</label>
-                        <textarea rows="3" class="form-control form-control-sm" id="description" placeholder="Enter description"></textarea>
+                        <textarea  formControlName="description" rows="3" class="form-control form-control-sm" id="description" placeholder="Enter description"></textarea>
                     </div>
                     <button type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">Submit</button>
                 </form>

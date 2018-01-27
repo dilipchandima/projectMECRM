@@ -132,12 +132,13 @@ exports.job_getByStatus = (req, res, next) => {
 
 exports.job_create = (req, res, next) => {
 
-    let insert_sql = "INSERT INTO job(job_address,job_discription,job_status,user_id) "
+    let insert_sql = "INSERT INTO job(job_address,job_discription,job_status,user_id, job_phone) "
         + "VALUES('"
         + req.body.address + "','"
         + req.body.description
-        + "','RETAIRE',"
-        + req.body.userId + ")";
+        + "','ENQUIRY',"
+        + req.body.userId + ",'"
+        + req.body.phone + "')";
 
     sqlConnectionPool.getConnection((err, connection) => {
         if (err) {

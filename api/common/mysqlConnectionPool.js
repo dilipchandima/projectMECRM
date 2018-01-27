@@ -5,6 +5,6 @@ module.exports = mysql.createPool({
     connectionLimit: 12500,
     host:'localhost',
     user:'root',
-    password:'',
+    password:'root',
     database:'electric'
 });

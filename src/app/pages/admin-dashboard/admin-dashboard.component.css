@@ -1,0 +1,32 @@
+.status{
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.issued{
+  background-color: #7cda3d;
+  border: 1px solid #4e8c25;
+}
+.accepted{
+  background-color: #da37ad;
+  border: 1px solid #932475;
+}
+.scheduled{    background-color: #a316e3;
+  border: 1px solid #7310a0;
+}
+.commenced{
+  background-color: #2dca99;
+  border: 1px solid #228e6c;
+}
+.completed{
+  background-color: #d80a4a;
+  border: 1px solid #a00636;
+}
+
+.enquiry{
+  background-color: #089dd8;
+  border: 1px solid #0574a0;
+}

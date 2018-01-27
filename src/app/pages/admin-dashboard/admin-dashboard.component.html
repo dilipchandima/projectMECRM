@@ -16,7 +16,9 @@
                         <td>{{job?.job_address}}</td>
                         <td>{{job?.job_discription}}</td>
                         <td>{{job?.job_status}}</td>
-                        <td>{{job?.job_status}}</td>
+                        <td>
+                            <span class="status" [ngClass]="{'issued': job?.job_status=='ISSUED', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETE', 'enquiry': job?.job_status=='ENQUIRY'}">{{job?.job_status}}</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

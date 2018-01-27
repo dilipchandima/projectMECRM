@@ -23,20 +23,18 @@
         <div class="col-md-6 col-sm-12">
             <div class="account-wall">
                 <h5>Add New Job</h5>
-                <form>
+                <form [formGroup]="_form">
                     <div class="form-group col-md-6">
                         <label for="tel">Contact Phone Number</label>
-                        <input type="text" class="form-control form-control-sm" id="phone" placeholder="Enter Mobile Number">
+                        <input formControlName="phone" type="text" class="form-control form-control-sm" id="phone" placeholder="Enter Mobile Number">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="exampleInputEmail1">Address</label>
-                        <input type="text" class="form-control form-control-sm" id="adddress1" placeholder="Enter first address line">
-                        <input type="text" class="form-control form-control-sm" id="adddress2" placeholder="Enter second address line" style="margin-top:3px">
-                        <input type="text" class="form-control form-control-sm" id="adddress3" placeholder="Enter third address line" style="margin-top:3px">
+                        <input formControlName="address" type="text" class="form-control form-control-sm" id="adddress1" placeholder="Enter first address line">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="exampleInputEmail1">Description</label>
-                        <textarea rows="3" class="form-control form-control-sm" id="description" placeholder="Enter description"></textarea>
+                        <textarea formControlName="description" rows="3" class="form-control form-control-sm" id="description" placeholder="Enter description"></textarea>
                     </div>
                     <button type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">Submit</button>
                 </form>

@@ -34,7 +34,7 @@ export class LoginComponent {
         this.authServise.login(this._loginForm.value)
             .subscribe((res) => {
                 console.log(res, res._body.userRole);
-                if (res.status === 201) {
+                if (res.status === 200) {
                     const obj = JSON.parse(res._body);
                     localStorage.setItem('userRole', obj.userRole);
                     this.router.navigate(['/user'], { queryParams: { userId: obj.userId } });

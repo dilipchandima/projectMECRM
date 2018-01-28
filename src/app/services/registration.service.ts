@@ -7,7 +7,7 @@ export class RegistrationService {
   constructor(private http: Http) { }
 
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private regUrl = '/api/user/register';
+  private regUrl = '/api/user/signup';
   // private getUserUrl = '/api/user/';
   // redirectUrl: string;
 

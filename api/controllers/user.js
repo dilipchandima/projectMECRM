@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sqlConnectionPool = require("../common/mysqlConnectionPool");
+var fs = require('fs');
 
 exports.user_signup = (req, res, next) => {
   var dt = new Date();//current date and time of server

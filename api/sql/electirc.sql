@@ -9,9 +9,10 @@ create table user(
 	user_address1 varchar(255),
 	user_address2 varchar(255),
 	user_address3 varchar(255),
-	user_profile_picture LONGBLOB ,
-  	user_password  varchar(40),
-	user_role enum ('ADMIN','USER') DEFAULT 'USER' NOT NULL,
+	user_profile_picture varchar(1000),
+  user_password  varchar(40),
+  user_phone int(40),
+	user_role enum ('ADMIN','USER') DEFAULT 'ADMIN' NOT NULL,
 	PRIMARY KEY(user_id)
 );
 

@@ -1,17 +1,17 @@
 INSERT INTO user
     (user_name,user_email,user_address1,user_address2,user_address3,user_role,user_password,user_phone)
 VALUES
-    ("jayani","jayani@gmail.com","matara1","kanaththagoda1","kamburugamuwa1",'ADMIN',"abcd",0767332406),
-    ("jayani","jayani","matara1","kanaththagoda1","kamburugamuwa1",'ADMIN',"123",0767332406),
-    ("sumudini","sumudini@gmail.com","matara2","kanaththagoda2","kamburugamuwa2",'USER',"efgh",0767332406),
-    ("dileepa","dileepa@gmail.com","matara3","kanaththagoda3","kamburugamuwa3",'ADMIN',"ijkl",0767332406),
-    ("chandima","chandima@gmail.com","matara4","kanaththagoda4","kamburugamuwa4",'USER',"mnop",0767332406),
-    ("dilip","dilip@gmail.com","matara5","kanaththagoda5","kamburugamuwa5",'USER',"qrst",0767332406),
-    ("sumudi","sumudi@gmail.com","matara6","kanaththagoda6","kamburugamuwa6",'USER',"uvwx",0767332406),
-    ("manusha","manusha@gmail.com","matara7","kanaththagoda7","kamburugamuwa7",'USER',"yzab",0767332406),
-    ("ashen","ashen@gmail.com","matara8","kanaththagoda8","kamburugamuwa8",'USER',"cdef",0767332406),
-    ("baba","baba@gmail.com","matara9","kanaththagoda9","kamburugamuwa9",'USER',"ghij",0767332406),
-    ("anne","anne@gmail.com","matara10","kanaththagoda10","kamburugamuwa11",'USER',"klmn",0767332406);
+    ("jayani","jayani@gmail.com","matara1","kanaththagoda1","kamburugamuwa1",'ADMIN',"abcd",'0767332406'),
+    ("jayani","jayani","matara1","kanaththagoda1","kamburugamuwa1",'ADMIN',"123",'0767332406'),
+    ("sumudini","sumudini@gmail.com","matara2","kanaththagoda2","kamburugamuwa2",'USER',"efgh",'0767332406'),
+    ("dileepa","dileepa@gmail.com","matara3","kanaththagoda3","kamburugamuwa3",'ADMIN',"ijkl",'0767332406'),
+    ("chandima","chandima@gmail.com","matara4","kanaththagoda4","kamburugamuwa4",'USER',"mnop",'0767332406'),
+    ("dilip","dilip@gmail.com","matara5","kanaththagoda5","kamburugamuwa5",'USER',"qrst",'0767332406'),
+    ("sumudi","sumudi@gmail.com","matara6","kanaththagoda6","kamburugamuwa6",'USER',"uvwx",'0767332406'),
+    ("manusha","manusha@gmail.com","matara7","kanaththagoda7","kamburugamuwa7",'USER',"yzab",'0767332406'),
+    ("ashen","ashen@gmail.com","matara8","kanaththagoda8","kamburugamuwa8",'USER',"cdef",'0767332406'),
+    ("baba","baba@gmail.com","matara9","kanaththagoda9","kamburugamuwa9",'USER',"ghij",'0767332406'),
+    ("anne","anne@gmail.com","matara10","kanaththagoda10","kamburugamuwa11",'USER',"klmn",'0767332406');
 
 
 INSERT INTO job

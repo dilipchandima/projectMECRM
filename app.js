@@ -20,6 +20,7 @@ app.use(cookieParser())
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.engine('html', require('ejs').renderFile);

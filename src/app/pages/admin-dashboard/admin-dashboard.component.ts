@@ -23,8 +23,10 @@ export class AdminDashboardComponent {
 
     this.jobService.getAll()
       .subscribe((res) => {
-        this.allJobs = JSON.parse(res._body).data;
-        this.filterJobs(this.filteringStatus);
+        if (res.status != 204) {
+          this.allJobs = JSON.parse(res._body).data;
+          this.filterJobs(this.filteringStatus);
+        }
       },
       (err) => { console.log(err) });
 

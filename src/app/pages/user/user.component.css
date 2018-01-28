@@ -93,3 +93,8 @@ textarea { resize: vertical; }
     font-size: 12px;
     background-color: #089dd8;
   }
+
+  .image-crm{
+      max-height: 175px;
+      max-width: 175px;
+  }

@@ -4,32 +4,32 @@ const sqlConnectionPool = require("../common/mysqlConnectionPool");
 var fs = require('fs');
 
 exports.user_signup = (req, res, next) => {
-  var dt = new Date();//current date and time of server
-
-  var text = "";//random text
-
+  var dt = new Date();
+  var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (var i = 0; i < 5; i++)
-
+  for (var i = 0; i < 5; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  imagetype = req.body.picture.split(";")[0].split("/")[1];
+  console.log(imagetype);
+  var base64d;
+  if (imagetype == 'jpeg') {
 
-  var base64d = req.body.picture.replace(/^data:image\/png;base64,/, "");
+    base64d = req.body.picture.replace(/^data:image\/jpeg;base64,/, "");
+  } else if (imagetype == 'png') {
 
-  var path = "./public/images/" + text + dt.getDate() + dt.getMonth() + dt.getMilliseconds() + ".png";
+    base64d = req.body.picture.replace(/^data:image\/png;base64,/, "");
+  } else if (imagetype == 'jpg') {
 
-  var path1 = "./images/" + text + dt.getDate() + dt.getMonth() + dt.getMilliseconds() + ".png";
-
+    base64d = req.body.picture.replace(/^data:image\/jpg;base64,/, "");
+  }
+  var path = "./public/images/" + text + dt.getDate() + dt.getMonth() + dt.getMilliseconds() + "." + imagetype;
+  var path1 = "/images/" + text + dt.getDate() + dt.getMonth() + dt.getMilliseconds() + "." + imagetype;
   fs.writeFile(path, base64d, 'base64', function (err) {
-
     if (err) {
-
       return console.log(err);
-
     }
-
     console.log("The file was saved!");
-
   });
 
   let insert_sql = 'INSERT INTO user (user_name,user_email,user_address1,user_address2,user_address3,user_phone,user_profile_picture,user_password,user_role)'
@@ -129,7 +129,7 @@ exports.user_login = (req, res, next) => {
                 expiresIn: "1h"
               }
             );
-            return res.cookie('CRM_COOKIE', token, {maxAge: 3600 * 24 * 1000})
+            return res.cookie('CRM_COOKIE', token, { maxAge: 3600 * 24 * 1000 })
               .status(200)
               .json({
                 message: "Auth successful",

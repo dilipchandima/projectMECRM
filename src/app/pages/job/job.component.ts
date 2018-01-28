@@ -41,7 +41,7 @@ export class JobComponent {
 
         this.createForm();
         this._isAdmin = (this.authService.checkUserRole() == "ADMIN") ? true : false;
-        if(this._isAdmin){
+        if (this._isAdmin) {
             this._ststusKeys.push("COMPLETE");
         }
     }
@@ -61,8 +61,10 @@ export class JobComponent {
 
                 this.noteService.getByJobID(params.jobId)
                     .subscribe((res) => {
-                        this.notes = JSON.parse(res._body).data;
-                        console.log(this.notes);
+                        if (res.status != 204) {
+                            this.notes = JSON.parse(res._body).data;
+                            console.log(this.notes);
+                        }
                     },
                     (err) => { console.log(err) });
 
@@ -70,7 +72,7 @@ export class JobComponent {
                     .subscribe((res) => {
                         this.job = JSON.parse(res._body).data[0];
                         this.filteringStatus = this.job.job_status;
-                        this.job_accepted_quation = (this.job.job_status == "ENQUIRY" || this.job.job_status == "ISSUED" ) ? false : true;
+                        this.job_accepted_quation = (this.job.job_status == "ENQUIRY" || this.job.job_status == "ISSUED") ? false : true;
                         console.log(this.job);
                     },
                     (err) => { console.log(err) });

@@ -11,7 +11,7 @@ create table user(
 	user_address3 varchar(255),
 	user_profile_picture varchar(1000),
   user_password  varchar(40),
-  user_phone int(40),
+  user_phone varchar(40),
 	user_role enum ('ADMIN','USER') DEFAULT 'ADMIN' NOT NULL,
 	PRIMARY KEY(user_id)
 );
@@ -38,3 +38,8 @@ create table note(
 	PRIMARY KEY(note_id),
 	FOREIGN KEY (job_id) REFERENCES job(job_id)
 );
+
+INSERT INTO user
+    (user_name,user_email,user_address1,user_address2,user_address3,user_role,user_password,user_phone)
+VALUES
+    ("admin","admin@me.com"," "," "," ",'ADMIN',"123qwe",'');

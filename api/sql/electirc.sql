@@ -16,6 +16,7 @@ create table user(
 	PRIMARY KEY(user_id)
 );
 
+drop table if exists job;
 create table job(
 	job_id int not null AUTO_INCREMENT,
 	job_address varchar(255),
@@ -27,6 +28,7 @@ create table job(
 	FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
+drop table if exists note;
 create table note(
 	note_id int not null AUTO_INCREMENT,
 	note_date DATE,

@@ -2,7 +2,15 @@
 
     <div class="row">
         <div class="col-md-2 col-sm-6">
-            <img class="img-responsive img-rounded" src="assets/img/profile.jpg" alt="">
+            <!--<img class="img-responsive img-rounded" src="assets/img/profile.jpg" alt="">-->
+          <!--<span class="thumbnail">-->
+            <!--<img [attr.src]='file_srcs[0]' alt="" />-->
+            <!--<img class="img-responsive img-rounded" src="{{user?.user_profile_picture}}" height="150px" width="150px" />-->
+          <!--<span class="thumbnail">-->
+            <img src="{{use?.user_profile_picture}}" height="200" width="200" />
+          <!--</span>-->
+
+          <!--</span>-->
         </div>
         <div class="col-md-4 col-sm-6">
             <h3>{{user?.user_name}}</h3>
@@ -10,21 +18,22 @@
             <h5>{{user?.user_address1}}</h5>
             <h5>{{user?.user_address2}}</h5>
             <h5>{{user?.user_address3}}</h5>
+            <h5>{{user?.user_phone}}</h5>
         </div>
         <div class="col-md-6 col-sm-12">
             <div class="account-wall">
                 <h5>Add New Job</h5>
                 <form [formGroup]="_form">
                     <div class="form-group col-md-6">
-                        <label for="tel">Contact Phone Number</label>
+                        <label for="phone">Contact Phone Number</label>
                         <input formControlName="phone" type="text" class="form-control form-control-sm" id="phone" placeholder="Enter Mobile Number">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="exampleInputEmail1">Address</label>
+                        <label for="adddress1">Address</label>
                         <input formControlName="address" type="text" class="form-control form-control-sm" id="adddress1" placeholder="Enter first address line">
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="exampleInputEmail1">Description</label>
+                        <label for="description">Description</label>
                         <textarea formControlName="description" rows="3" class="form-control form-control-sm" id="description" placeholder="Enter description"></textarea>
                     </div>
                     <button type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">Submit</button>

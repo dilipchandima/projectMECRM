@@ -16,8 +16,8 @@ import { AuthService } from './services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { LoginRouteGuard } from './services/router.guard';
-import { RegistrationService } from "./services/registration.service";
-import { CookieService } from 'ngx-cookie-service';
+import { RegistrationService } from './services/registration.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [

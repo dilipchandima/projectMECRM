@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {RegistrationService} from "../../services/registration.service";
+import {RegistrationService} from '../../services/registration.service';
 
 @Component({
   selector: 'register',
@@ -15,7 +15,10 @@ export class RegisterComponent {
     phone: string,
     password: string,
     passwordre: string,
-    picture: string
+    picture: string,
+    address1: string,
+    address2: string,
+    address3: string
   } =
     {
       name: '',
@@ -23,7 +26,10 @@ export class RegisterComponent {
       phone: '',
       password: '',
       passwordre: '',
-      picture: ''
+      picture: '',
+      address1: '',
+      address2: '',
+      address3: ''
     };
 
   public file_srcs: string[] = [];
@@ -36,18 +42,22 @@ export class RegisterComponent {
   }
 
   onSubmit(data) {
+    console.log(data);
     this.form.name = data.name;
     this.form.email = data.email;
     this.form.phone = data.phone;
     this.form.password = data.password;
     this.form.passwordre = data.passwordre;
+    this.form.address1 = data.address1;
+    this.form.address2 = data.address2;
+    this.form.address3 = data.address3;
     console.log(this.form);
     // this.router.navigate(['../login']);
     this.registrationService.signup(this.form)
       .subscribe((res) => {
           console.log(res, res._body.userRole);
-          if (res.status === 200) {
-            this.router.navigate(['/login']);
+          if (res.status === 201) {
+            this.router.navigate(['../login']);
           }
         },
         (err) => {
@@ -57,6 +67,10 @@ export class RegisterComponent {
 
   fileChange(input) {
     this.readFiles(input.files);
+  }
+
+  fileRemove() {
+    this.form.picture = '';
   }
 
   readFiles(files, index = 0) {

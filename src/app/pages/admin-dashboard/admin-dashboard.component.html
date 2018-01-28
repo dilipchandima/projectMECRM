@@ -19,16 +19,18 @@
                         <th scope="col">Description</th>
                         <th scope="col">Contact</th>
                         <th scope="col">Status</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let job of jobs" (click)="goToNotes(job.job_id)">
+                    <tr *ngFor="let job of jobs">
                         <td>{{job?.job_address}}</td>
                         <td>{{job?.job_discription}}</td>
                         <td>{{job?.job_phone}}</td>
                         <td>
                             <span class="status" [ngClass]="{'issued': job?.job_status=='ISSUED', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETE', 'enquiry': job?.job_status=='ENQUIRY', 'cancelled':job?.job_status=='CANCELLED'}">{{job?.job_status}}</span>
                         </td>
+                        <td><span class="view" (click)="goToNotes(job.job_id)"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> VIEW</span></td>
                     </tr>
                 </tbody>
             </table>

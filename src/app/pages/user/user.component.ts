@@ -12,6 +12,7 @@ import { JobService } from '../../services/job.service';
 
 export class UserComponent {
 
+    _isAdmin = false;
     private user: any;
     private jobs: Array<any>;
 
@@ -34,17 +35,22 @@ export class UserComponent {
         this.route
             .queryParams
             .subscribe(params => {
+                let userId = params.userId;
+                if(params.userId == "undefined" || params.userId == null){
+                    userId=localStorage.getItem("user_id");
+                }
 
-                this._dataObj.userId = params.userId;
+                this._dataObj.userId = userId;
 
-                this.authService.getUser(params.userId)
+                this.authService.getUser(userId)
                     .subscribe((res) => {
                         this.user = JSON.parse(res._body).data[0];
                         // console.log(this.user);
+                        this._isAdmin = (this.user.user_role == "ADMIN") ? true : false;
                     },
                     (err) => { console.log(err); });
 
-                this.jobService.getByUserID(params.userId)
+                this.jobService.getByUserID(userId)
                     .subscribe((res) => {
                         this.jobs = JSON.parse(res._body).data;
                         // console.log(this.jobs);

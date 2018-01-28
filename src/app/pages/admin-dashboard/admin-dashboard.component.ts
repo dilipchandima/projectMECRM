@@ -49,6 +49,10 @@ export class AdminDashboardComponent {
   statusChanged(status: string) {
     this.filterJobs(status);
   }
+
+  goToNotes(jobID: number) {
+    this.router.navigate(['/jobs'], { queryParams: { jobId: jobID } });
+  }
 }
 
 

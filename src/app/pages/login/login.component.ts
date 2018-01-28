@@ -19,6 +19,9 @@ export class LoginComponent {
     } = { email: '', password: '' };
 
     constructor(private authServise: AuthService, private router: Router) {
+        if (this.authServise.isAutharized) {
+            this.router.navigate(['/user'], { queryParams: { userId: localStorage.getItem("user_id") } });
+        }
         this.createForm();
     }
 
@@ -36,7 +39,9 @@ export class LoginComponent {
                 console.log(res, res._body.userRole);
                 if (res.status === 200) {
                     const obj = JSON.parse(res._body);
+                    console.log(obj)
                     localStorage.setItem('userRole', obj.userRole);
+                    localStorage.setItem('user_id', obj.userId);
                     this.router.navigate(['/user'], { queryParams: { userId: obj.userId } });
                 }
             },

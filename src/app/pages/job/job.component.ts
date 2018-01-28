@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { JobService } from './../../services/job.service';
 import { Component } from "@angular/core";
@@ -12,6 +13,7 @@ import { NoteService } from "../../services/note.service";
 
 export class JobComponent {
 
+    _isAdmin = false;
     private notes: Array<any>;
     private job: any = {
         job_address: "wewew",
@@ -34,8 +36,14 @@ export class JobComponent {
     constructor(private route: ActivatedRoute,
         private router: Router,
         private noteService: NoteService,
-        private jobService: JobService) {
+        private jobService: JobService,
+        private authService: AuthService) {
+
         this.createForm();
+        this._isAdmin = (this.authService.checkUserRole() == "ADMIN") ? true : false;
+        if(this._isAdmin){
+            this._ststusKeys.push("COMPLETE");
+        }
     }
 
     acceptQuatation() {
@@ -62,6 +70,7 @@ export class JobComponent {
                     .subscribe((res) => {
                         this.job = JSON.parse(res._body).data[0];
                         this.filteringStatus = this.job.job_status;
+                        this.job_accepted_quation = (this.job.job_status == "ENQUIRY" || this.job.job_status == "ISSUED" ) ? false : true;
                         console.log(this.job);
                     },
                     (err) => { console.log(err) });

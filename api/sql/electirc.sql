@@ -21,7 +21,7 @@ create table job(
 	job_address varchar(255),
 	job_discription varchar(250),
 	job_phone varchar(250),
-	job_status enum('ENQUIRY','ISSUED','ACCEPTED','SCHEDULED','COMMENCED', 'COMPLETE') not null,
+	job_status enum('ENQUIRY','ISSUED','ACCEPTED','SCHEDULED','COMMENCED', 'COMPLETE', 'CANCELLED') not null,
 	user_id int,
 	PRIMARY KEY(job_id),
 	FOREIGN KEY (user_id) REFERENCES user(user_id)

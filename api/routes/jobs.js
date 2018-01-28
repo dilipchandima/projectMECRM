@@ -10,5 +10,6 @@ router.get("/byUserId/:userId", checkAuth, JobsController.job_getByUserId);
 router.get("/byStatus/:status", checkAuth, JobsController.job_getByStatus);
 
 router.post("/create", checkAuth, JobsController.job_create);
+router.post("/update", checkAuth, JobsController.job_status_update);
 
 module.exports = router;

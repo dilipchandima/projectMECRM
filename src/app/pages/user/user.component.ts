@@ -86,7 +86,4 @@ export class UserComponent {
             })
     }
 
-    check() {
-        console.log(this.authService.logout());
-    }
 }

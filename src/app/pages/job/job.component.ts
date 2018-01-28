@@ -13,7 +13,12 @@ import { NoteService } from "../../services/note.service";
 export class JobComponent {
 
     private notes: Array<any>;
-    private job: any;
+    private job: any = {
+        job_address: "wewew",
+        job_status: "ISSUED"
+    };
+
+    public job_accepted_quation = false;
 
     public _form: FormGroup;
     public _dataObj: {
@@ -23,12 +28,21 @@ export class JobComponent {
         description: string
     } = { date: "", time: "", jobId: 0, description: "" };
 
+    _ststusKeys = ["ENQUIRY", "ISSUED", "ACCEPTED", "COMMENCED", "SCHEDULED", "CANCELLED"];
+    filteringStatus = "";
 
     constructor(private route: ActivatedRoute,
         private router: Router,
         private noteService: NoteService,
         private jobService: JobService) {
         this.createForm();
+    }
+
+    acceptQuatation() {
+        if (this.job_accepted_quation == false) {
+            this.job_accepted_quation = true;
+            this.statusChanged("ACCEPTED")
+        }
     }
 
     ngOnInit() {
@@ -47,6 +61,7 @@ export class JobComponent {
                 this.jobService.getById(params.jobId)
                     .subscribe((res) => {
                         this.job = JSON.parse(res._body).data[0];
+                        this.filteringStatus = this.job.job_status;
                         console.log(this.job);
                     },
                     (err) => { console.log(err) });
@@ -82,6 +97,18 @@ export class JobComponent {
             },
             (err) => {
                 console.log(err)
+            })
+    }
+
+
+    statusChanged(status: string) {
+        this.filteringStatus = status;
+        this.job.job_status = status;
+        this.jobService.updateStatus({ status: status, jobId: this.job.job_id })
+            .subscribe((res) => {
+                console.log("uPDATE SUSS", res);
+            }, (err) => {
+                console.log(err);
             })
     }
 

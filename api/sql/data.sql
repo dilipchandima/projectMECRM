@@ -44,7 +44,7 @@ VALUES
 	("engineerAddress25","abcd",'COMPLETE',1),
 	("engineerAddress26","abcd",'ACCEPTED',3),
 	("engineerAddress27","abcd",'ISSUED',2),
-	("engineerAddress28","abcd",'SCHEDULED',1),
+	("engineerAddress28","abcd",'CANCELLED',1),
 	("engineerAddress29","abcd",'COMMENCED',2),
 	("engineerAddress30","abcd",'SCHEDULED',4),
 	("engineerAddress31","abcd",'COMPLETE',1),

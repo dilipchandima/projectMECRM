@@ -20,7 +20,6 @@
             <h5>{{user?.user_address2}}</h5>
             <h5>{{user?.user_address3}}</h5>
         </div>
-        <button (click)="check()">test</button>
         <div class="col-md-6 col-sm-12">
             <div class="account-wall">
                 <h5>Add New Job</h5>
@@ -58,7 +57,9 @@
                         <td>{{job?.job_address}}</td>
                         <td>{{job?.job_discription}}</td>
                         <td>{{job?.job_phone}}</td>
-                        <td><span class="status" [ngClass]="{'issued': job?.job_status=='ISSUED', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETE', 'enquiry': job?.job_status=='ENQUIRY'}">{{job?.job_status}}</span></td>
+                        <td>
+                            <span class="status" [ngClass]="{'issued': job?.job_status=='ISSUED', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETE', 'enquiry': job?.job_status=='ENQUIRY', 'cancelled':job?.job_status=='CANCELLED'}">{{job?.job_status}}</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

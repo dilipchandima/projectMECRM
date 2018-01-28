@@ -11,6 +11,7 @@ export class JobService {
     private getByIDUrl = '/api/job/';
     private getAllUrl = '/api/job/getAll';
     private createUrl = '/api/job/create';
+    private updateUrl = '/api/job/update'
 
     getByUserID(userId: number): Observable<any> {
         return this.http.get(this.getByUserIDUrl + userId, { headers: this.headers })
@@ -21,7 +22,7 @@ export class JobService {
     }
 
     getAll(): Observable<any> {
-        return this.http.get(this.getAllUrl, { headers: this.headers })
+        return this.http.get(this.getAllUrl, { headers: this.headers });
     }
 
     createJob(data: {
@@ -30,6 +31,13 @@ export class JobService {
         userId: number,
         phone: string
     }) {
-        return this.http.post(this.createUrl, data, { headers: this.headers })
+        return this.http.post(this.createUrl, data, { headers: this.headers });
+    }
+
+    updateStatus(data: {
+        status: string
+        jobId: number
+    }) {
+        return this.http.post(this.updateUrl, data, { headers: this.headers });
     }
 }

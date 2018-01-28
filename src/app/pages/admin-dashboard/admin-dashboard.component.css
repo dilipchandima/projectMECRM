@@ -30,3 +30,8 @@
   background-color: #089dd8;
   border: 1px solid #0574a0;
 }
+
+.cancelled{
+  background-color: #ed0000;
+  border: 1px solid #a50101;
+}

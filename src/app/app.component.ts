@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
@@ -9,11 +10,18 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
-  constructor(private authService: AuthService) {
-
+  constructor(
+    private authService: AuthService, 
+    private router: Router ) {
   }
 
   logout() {
     this.authService.logout();
+  }
+
+  gotoDashboard(){
+    if(this.authService.checkUserRole() == "ADMIN"){
+      this.router.navigate(['/dashboard'])
+    }
   }
 }

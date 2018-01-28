@@ -14,7 +14,10 @@ export class UserComponent {
 
     _isAdmin = false;
     private user: any;
-    private jobs: Array<any>;
+    private allJobs: Array<any>;
+    jobs: Array<any>;
+    _ststusKeys = ["ALL", "ENQUIRY", "COMPLETE", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"]
+    filteringStatus = "ALL";
 
     public _form: FormGroup;
     public _dataObj: {
@@ -53,7 +56,8 @@ export class UserComponent {
                 this.jobService.getByUserID(userId)
                     .subscribe((res) => {
                         if (res.status != 204) {
-                            this.jobs = JSON.parse(res._body).data;
+                            this.allJobs = JSON.parse(res._body).data;
+                            this.filterJobs("ALL");
                             console.log(JSON.parse(res._body));
                         }
                     },
@@ -84,8 +88,9 @@ export class UserComponent {
                 this._form.reset();
                 this.jobService.getByUserID(this.user.user_id)
                     .subscribe((res) => {
-                        this.jobs = JSON.parse(res._body).data;
-                        console.log(this.jobs);
+                        this.allJobs = JSON.parse(res._body).data;
+                        this.filterJobs("ALL");
+                        console.log(this.allJobs);
                     },
                     (err) => { console.log(err); });
             },
@@ -94,4 +99,23 @@ export class UserComponent {
             });
     }
 
+    filterJobs(status: string) {
+        if (status == "ALL") {
+            this.jobs = this.allJobs;
+        }
+        else {
+            this.jobs = this.allJobs.filter((job) => {
+                if (job.job_status == status) {
+                    return true
+                }
+                else {
+                    return false;
+                }
+            });
+        }
+    }
+
+    statusChanged(status: string) {
+        this.filterJobs(status);
+    }
 }

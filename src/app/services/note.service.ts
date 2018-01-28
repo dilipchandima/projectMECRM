@@ -18,6 +18,7 @@ export class NoteService {
         date: string,
         time: string,
         jobId: number,
+        role: string,
         description: string
     }) {
         return this.http.post(this.createNoteUrl, data, { headers: this.headers })

@@ -41,6 +41,16 @@
             </div>
         </div>
     </div>
+    <div class="row" style="margin: 15px 0px;">
+        <div class="col-sm-8"></div>
+
+        <div class="col-sm-4">
+            <b style="font-size:12px">Filter By Job Status :</b>
+            <select class="form-control" [(ngModel)]="filteringStatus" (ngModelChange)="statusChanged($event)">
+                <option *ngFor="let s of _ststusKeys" [ngValue]="s">{{s}}</option>
+            </select>
+        </div>
+    </div>
     <div class="row" style="margin-top:20px">
         <div class="col-md-12 col-sm-12 table_container">
             <table class="table">
@@ -59,7 +69,7 @@
                         <td>{{job?.job_discription}}</td>
                         <td>{{job?.job_phone}}</td>
                         <td>
-                            <span class="status" [ngClass]="{'issued': job?.job_status=='ISSUED', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETE', 'enquiry': job?.job_status=='ENQUIRY', 'cancelled':job?.job_status=='CANCELLED'}">{{job?.job_status}}</span>
+                            <span class="status" [ngClass]="{'issued': job?.job_status=='QUOTATION', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETED', 'enquiry': job?.job_status=='ENQUIRY', 'cancelled':job?.job_status=='CANCELLED'}">{{job?.job_status}}</span>
                         </td>
                         <td><span class="view" (click)="goToNotes(job.job_id)"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> VIEW</span></td>
                     </tr>

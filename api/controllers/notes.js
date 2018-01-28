@@ -68,11 +68,12 @@ exports.notes_getByJob = (req, res, next) => {
 
 exports.notes_create = (req, res, next) => {
 
-    let sql = "INSERT INTO note (note_date,note_time,note_description,job_id) "
+    let sql = "INSERT INTO note (note_date,note_time,note_description,note_role,job_id) "
         + " VALUES (\""
         + req.body.date + "\" ,\""
         + req.body.time + "\",\""
-        + req.body.description + "\" ,"
+        + req.body.description + "\" ,\""
+        + req.body.role + "\" ,"
         + req.body.jobId + ");";
 
     sqlConnectionPool.getConnection((err, connection) => {

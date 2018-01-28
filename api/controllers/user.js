@@ -41,9 +41,16 @@ exports.user_signup = (req, res, next) => {
     + req.body.address3 + '","'
     + req.body.phone + '","'
     + path1 + '","'
-    + req.body.password + '","USER")';
+    + req.body.password + '","'
+    + req.body.role + '")';
 
   let validate_sql = 'SELECT * FROM user WHERE user_email =\'' + req.body.email + '\'';
+
+  if(req.body.role == "ADMIN" && req.body.SuPw != "$upp#r^dm!nK@y"){
+    return res.status(500).json({
+      message: "Worng Supper Admin Password !"
+    });
+  }
 
   sqlConnectionPool.getConnection((err, connection) => {
     if (err) {

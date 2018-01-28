@@ -27,10 +27,11 @@ export class JobComponent {
         date: string,
         time: string,
         jobId: number,
-        description: string
-    } = { date: "", time: "", jobId: 0, description: "" };
+        description: string,
+        role: string
+    } = { date: "", time: "", jobId: 0, description: "" , role: ""};
 
-    _ststusKeys = ["ENQUIRY", "ISSUED", "ACCEPTED", "COMMENCED", "SCHEDULED", "CANCELLED"];
+    _ststusKeys = ["ENQUIRY", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"];
     filteringStatus = "";
 
     constructor(private route: ActivatedRoute,
@@ -49,7 +50,12 @@ export class JobComponent {
     acceptQuatation() {
         if (this.job_accepted_quation == false) {
             this.job_accepted_quation = true;
-            this.statusChanged("ACCEPTED")
+            this.jobService.accepted({ jobId: this.job.job_id })
+                .subscribe((res) => {
+                    console.log("uPDATE SUSS", res);
+                }, (err) => {
+                    console.log(err);
+                })
         }
     }
 
@@ -72,7 +78,7 @@ export class JobComponent {
                     .subscribe((res) => {
                         this.job = JSON.parse(res._body).data[0];
                         this.filteringStatus = this.job.job_status;
-                        this.job_accepted_quation = (this.job.job_status == "ENQUIRY" || this.job.job_status == "ISSUED") ? false : true;
+                        this.job_accepted_quation = (this.job.job_accepted == "F") ? false : true;
                         console.log(this.job);
                     },
                     (err) => { console.log(err) });
@@ -85,7 +91,8 @@ export class JobComponent {
             date: new FormControl(this._dataObj.date, Validators.required),
             time: new FormControl(this._dataObj.time, Validators.required),
             jobId: new FormControl(this._dataObj.jobId, Validators.required),
-            description: new FormControl(this._dataObj.description, Validators.required)
+            description: new FormControl(this._dataObj.description, Validators.required),
+            role: new FormControl(this._dataObj.role, Validators.required)
         });
     }
 
@@ -93,6 +100,7 @@ export class JobComponent {
         this._form.value.jobId = this.job.job_id;
         this._form.value.date = this.getFormatedDate();
         this._form.value.time = this.getFormatedTime();
+        this._form.value.role = localStorage.getItem("userRole");
         // console.log(this._form.value);
 
         this.noteService.createNote(this._form.value)

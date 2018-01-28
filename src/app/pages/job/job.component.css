@@ -69,3 +69,11 @@ textarea { resize: vertical; }
     background-color: #ed0000;
     border: 1px solid #a50101;
   }
+
+  .admin{
+      color: black;
+  }
+
+  .user{
+      color: red;
+  }

@@ -1,6 +1,6 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {RegistrationService} from '../../services/registration.service';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RegistrationService } from '../../services/registration.service';
 
 @Component({
   selector: 'register',
@@ -9,16 +9,26 @@ import {RegistrationService} from '../../services/registration.service';
 })
 export class RegisterComponent {
   path = '';
+  register_as_admin = false;
+
+  passwordError = false;
+  nameError = false;
+  emailError = false;
+  phoneError = false;
+  addressError = false;
+
   public form: {
     name: string,
     email: string,
     phone: string,
     password: string,
     passwordre: string,
+    SuPw: string,
     picture: string,
     address1: string,
     address2: string,
-    address3: string
+    address3: string,
+    role: string
   } =
     {
       name: '',
@@ -26,10 +36,12 @@ export class RegisterComponent {
       phone: '',
       password: '',
       passwordre: '',
+      SuPw: '',
       picture: '',
       address1: '',
       address2: '',
-      address3: ''
+      address3: '',
+      role: 'USER'
     };
 
   public file_srcs: string[] = [];
@@ -38,23 +50,46 @@ export class RegisterComponent {
 
   public debug_size_after: string[] = [];
 
-  constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef, private  registrationService: RegistrationService) {
+  constructor(private router: Router, private changeDetectorRef: ChangeDetectorRef, private registrationService: RegistrationService) {
   }
 
   onSubmit(data) {
-    console.log(data);
-    this.form.name = data.name;
-    this.form.email = data.email;
-    this.form.phone = data.phone;
-    this.form.password = data.password;
-    this.form.passwordre = data.passwordre;
-    this.form.address1 = data.address1;
-    this.form.address2 = data.address2;
-    this.form.address3 = data.address3;
-    console.log(this.form);
-    // this.router.navigate(['../login']);
-    this.registrationService.signup(this.form)
-      .subscribe((res) => {
+    
+
+    if (data.passwordre != undefined 
+      && data.password != undefined 
+      && data.password === data.passwordre
+      && data.passwordre.length >= 8
+      && data.name != undefined
+      && data.email != undefined
+      && data.phone != undefined
+      && data.address1 != undefined) {
+
+      this.passwordError = false;
+      this.nameError = false;
+      this.emailError = false;
+      this.phoneError = false;
+      this.addressError = false;
+
+      console.log(data);
+      this.form.name = data.name;
+      this.form.email = data.email;
+      this.form.phone = data.phone;
+      this.form.password = data.password;
+      this.form.passwordre = data.passwordre;
+      this.form.address1 = data.address1;
+      this.form.address2 = data.address2;
+      this.form.address3 = data.address3;
+      this.form.SuPw = data.SuPw;
+      if (this.register_as_admin) {
+        this.form.role = "ADMIN";
+      } else {
+        this.form.role = "USER";
+      }
+      console.log(this.form);
+      // this.router.navigate(['../login']);
+      this.registrationService.signup(this.form)
+        .subscribe((res) => {
           console.log(res, res._body.userRole);
           if (res.status === 201) {
             this.router.navigate(['../login']);
@@ -63,6 +98,41 @@ export class RegisterComponent {
         (err) => {
           console.log(err);
         });
+    }
+    else {
+      if (!(data.passwordre != undefined 
+        && data.password != undefined && data.password === data.passwordre && data.passwordre.length >= 8)) {
+        this.passwordError = true;
+      }
+      if(data.name == undefined || data.name == ""){
+        this.nameError = true;
+      }
+      if(data.email == undefined || data.email == ""){
+        this.emailError = true;
+      }
+      if(data.phone == undefined || data.phone == ""){
+        this.phoneError = true;
+      }
+      if(data.address1 == undefined || data.address1 == ""){
+        this.addressError = true;
+      }
+    }
+    if ((data.passwordre != undefined 
+      && data.password != undefined && data.password === data.passwordre && data.passwordre.length >= 8)) {
+      this.passwordError = false;
+    }
+    if(!(data.name == undefined || data.name == "")){
+      this.nameError = false;
+    }
+    if(!(data.email == undefined || data.email == "")){
+      this.emailError = false;
+    }
+    if(!(data.phone == undefined || data.phone == "")){
+      this.phoneError = false;
+    }
+    if(!(data.address1 == undefined || data.address1 == "")){
+      this.addressError = false;
+    }
   }
 
   fileChange(input) {
@@ -122,5 +192,9 @@ export class RegisterComponent {
       this.form.picture = reader.result;
     };
     reader.readAsDataURL(file);
+  }
+
+  asAdmin() {
+    this.register_as_admin = !this.register_as_admin;
   }
 }

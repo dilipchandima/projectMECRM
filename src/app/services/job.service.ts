@@ -12,6 +12,7 @@ export class JobService {
     private getAllUrl = '/api/job/getAll';
     private createUrl = '/api/job/create';
     private updateUrl = '/api/job/update'
+    private acceptedUrl = '/api/job/accepted'
 
     getByUserID(userId: number): Observable<any> {
         return this.http.get(this.getByUserIDUrl + userId, { headers: this.headers })
@@ -39,5 +40,9 @@ export class JobService {
         jobId: number
     }) {
         return this.http.post(this.updateUrl, data, { headers: this.headers });
+    }
+
+    accepted(data: { jobId: number }) {
+        return this.http.post(this.acceptedUrl, data, { headers: this.headers })
     }
 }

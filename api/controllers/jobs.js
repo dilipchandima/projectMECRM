@@ -132,13 +132,13 @@ exports.job_getByStatus = (req, res, next) => {
 
 exports.job_create = (req, res, next) => {
 
-    let insert_sql = "INSERT INTO job(job_address,job_discription,job_status,user_id, job_phone) "
+    let insert_sql = "INSERT INTO job(job_address,job_discription,job_status,user_id, job_phone, job_accepted) "
         + "VALUES('"
         + req.body.address + "','"
         + req.body.description
         + "','ENQUIRY',"
         + req.body.userId + ",'"
-        + req.body.phone + "')";
+        + req.body.phone + "','F')";
 
     sqlConnectionPool.getConnection((err, connection) => {
         if (err) {
@@ -173,6 +173,39 @@ exports.job_status_update = (req, res, next) => {
     let sql = "UPDATE job SET job_status = '"
         + req.body.status + "' WHERE job_id = "
         + req.body.jobId + ";";
+
+    sqlConnectionPool.getConnection((err, connection) => {
+        if (err) {
+            return res.status(204).json({
+                message: "SQL Error"
+            });
+        }
+        else {
+            connection.query(sql, (sqlErr, results) => {
+                if (sqlErr) {
+                    console.log(sqlErr);
+                    return res.status(204).json({
+                        message: "SQL Error"
+                    });
+                } else if (results) {
+                    console.log(results);
+                    return res.status(201).json({
+                        message: "Job updated"
+                    });
+                } else {
+                    return res.status(500).json({
+                        message: "Something went wrong"
+                    });
+                }
+            });
+        }
+    })
+}
+
+
+exports.job_accepted = (req, res, next) => {
+
+    let sql = "UPDATE job SET job_accepted = 'T' WHERE job_id = " + req.body.jobId + ";";
 
     sqlConnectionPool.getConnection((err, connection) => {
         if (err) {

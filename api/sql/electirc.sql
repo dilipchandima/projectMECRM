@@ -22,8 +22,9 @@ create table job(
 	job_address varchar(255),
 	job_discription varchar(250),
 	job_phone varchar(250),
-	job_status enum('ENQUIRY','ISSUED','ACCEPTED','SCHEDULED','COMMENCED', 'COMPLETE', 'CANCELLED') not null,
+	job_status enum('ENQUIRY','QUOTATION','SCHEDULED','COMMENCED', 'COMPLETED', 'CANCELLED') not null,
 	user_id int,
+	job_accepted varchar(2),
 	PRIMARY KEY(job_id),
 	FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
@@ -35,11 +36,7 @@ create table note(
 	note_time TIME,
 	note_description varchar(255),
 	job_id int,
+	note_role varchar(5),
 	PRIMARY KEY(note_id),
 	FOREIGN KEY (job_id) REFERENCES job(job_id)
 );
-
-INSERT INTO user
-    (user_name,user_email,user_address1,user_address2,user_address3,user_role,user_password,user_phone)
-VALUES
-    ("admin","admin@me.com"," "," "," ",'ADMIN',"123qwe",'');

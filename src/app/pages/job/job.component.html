@@ -33,7 +33,7 @@
             </p>
 
         </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-sm-12" *ngIf="_isAdmin">
             <b style="font-size:12px">Change Job Status :</b>
             <select class="form-control" [(ngModel)]="filteringStatus" (ngModelChange)="statusChanged($event)">
                 <option *ngFor="let s of _ststusKeys" [ngValue]="s">{{s}}</option>

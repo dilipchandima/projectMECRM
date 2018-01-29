@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { JobService } from './../../services/job.service';
 import { Component } from "@angular/core";
 import { Router } from '@angular/router';
@@ -11,13 +12,15 @@ import { Router } from '@angular/router';
 export class AdminDashboardComponent {
 
   private allJobs: Array<any>;
+  private allUsers: Array<any>;
   private jobs: Array<any>;
   _ststusKeys = ["ALL", "ENQUIRY", "COMPLETE", "ISSUED", "ACCEPTED", "COMMENCED", "SCHEDULED", "CANCELLED"]
   filteringStatus = "ALL";
 
   constructor(
     private router: Router,
-    private jobService: JobService) { }
+    private jobService: JobService,
+    private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -30,6 +33,14 @@ export class AdminDashboardComponent {
       },
       (err) => { console.log(err) });
 
+    this.authService.getAllUsers()
+      .subscribe((res) => {
+        console.log(res);
+        if (res.status != 204) {
+          this.allUsers = JSON.parse(res._body).data;
+        }
+      },
+      (err) => { console.log(err) });
   }
 
   filterJobs(status: string) {
@@ -54,6 +65,10 @@ export class AdminDashboardComponent {
 
   goToNotes(jobID: number) {
     this.router.navigate(['/jobs'], { queryParams: { jobId: jobID } });
+  }
+
+  goToUser(userId: number) {
+    this.router.navigate(['/user'], { queryParams: { userId: userId } });
   }
 }
 

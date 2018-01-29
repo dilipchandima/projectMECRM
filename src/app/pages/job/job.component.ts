@@ -31,7 +31,7 @@ export class JobComponent {
         role: string
     } = { date: "", time: "", jobId: 0, description: "" , role: ""};
 
-    _ststusKeys = ["ENQUIRY", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"];
+    _ststusKeys = ["ENQUIRY", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED", "COMPLETE"];
     filteringStatus = "";
 
     constructor(private route: ActivatedRoute,
@@ -42,9 +42,6 @@ export class JobComponent {
 
         this.createForm();
         this._isAdmin = (this.authService.checkUserRole() == "ADMIN") ? true : false;
-        if (this._isAdmin) {
-            this._ststusKeys.push("COMPLETE");
-        }
     }
 
     acceptQuatation() {

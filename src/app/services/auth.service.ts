@@ -14,6 +14,8 @@ export class AuthService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
     private loginUrl = '/api/user/login';
     private getUserUrl = '/api/user/';
+    private getAllUsersURL = '/api/user/getAll';
+
     redirectUrl: string;
     cookieValue = 'UNKNOWN';
 
@@ -39,5 +41,9 @@ export class AuthService {
         this.router.navigate(['/login'])
 
         return "logout succesfully";
+    }
+
+    getAllUsers(): Observable<any>{
+        return this.http.get(this.getAllUsersURL, { headers: this.headers })
     }
 }

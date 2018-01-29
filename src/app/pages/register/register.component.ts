@@ -16,6 +16,7 @@ export class RegisterComponent {
   emailError = false;
   phoneError = false;
   addressError = false;
+  registrationFail = false;
 
   public form: {
     name: string,
@@ -54,10 +55,10 @@ export class RegisterComponent {
   }
 
   onSubmit(data) {
-    
 
-    if (data.passwordre != undefined 
-      && data.password != undefined 
+
+    if (data.passwordre != undefined
+      && data.password != undefined
       && data.password === data.passwordre
       && data.passwordre.length >= 8
       && data.name != undefined
@@ -92,45 +93,47 @@ export class RegisterComponent {
         .subscribe((res) => {
           console.log(res, res._body.userRole);
           if (res.status === 201) {
+            this.registrationFail = false;
             this.router.navigate(['../login']);
           }
         },
         (err) => {
           console.log(err);
+          this.registrationFail = true;
         });
     }
     else {
-      if (!(data.passwordre != undefined 
+      if (!(data.passwordre != undefined
         && data.password != undefined && data.password === data.passwordre && data.passwordre.length >= 8)) {
         this.passwordError = true;
       }
-      if(data.name == undefined || data.name == ""){
+      if (data.name == undefined || data.name == "") {
         this.nameError = true;
       }
-      if(data.email == undefined || data.email == ""){
+      if (data.email == undefined || data.email == "") {
         this.emailError = true;
       }
-      if(data.phone == undefined || data.phone == ""){
+      if (data.phone == undefined || data.phone == "") {
         this.phoneError = true;
       }
-      if(data.address1 == undefined || data.address1 == ""){
+      if (data.address1 == undefined || data.address1 == "") {
         this.addressError = true;
       }
     }
-    if ((data.passwordre != undefined 
+    if ((data.passwordre != undefined
       && data.password != undefined && data.password === data.passwordre && data.passwordre.length >= 8)) {
       this.passwordError = false;
     }
-    if(!(data.name == undefined || data.name == "")){
+    if (!(data.name == undefined || data.name == "")) {
       this.nameError = false;
     }
-    if(!(data.email == undefined || data.email == "")){
+    if (!(data.email == undefined || data.email == "")) {
       this.emailError = false;
     }
-    if(!(data.phone == undefined || data.phone == "")){
+    if (!(data.phone == undefined || data.phone == "")) {
       this.phoneError = false;
     }
-    if(!(data.address1 == undefined || data.address1 == "")){
+    if (!(data.address1 == undefined || data.address1 == "")) {
       this.addressError = false;
     }
   }

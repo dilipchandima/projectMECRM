@@ -4,50 +4,64 @@
       <div class="account-wall">
         <h3 class="text-center">Registration</h3>
         <h4 class="text-center">MANCHESTER ELECTRIC</h4>
+        <span *ngIf="registrationFail" style="font-size:10px;font-weight:200; color: red">login Failed</span>
         <form #form="ngForm">
           <div class="form-group">
-            <label for="name">Name <span *ngIf="nameError" style="font-size:10px;font-weight:200; color: red">Required</span></label>
+            <label for="name">Name
+              <span *ngIf="nameError" style="font-size:10px;font-weight:200; color: red">Required</span>
+            </label>
             <input type="text" class="form-control form-control-sm" id="name" placeholder="Enter Name" required name="name" value="name"
-                   [(ngModel)]="form.name">
+              [(ngModel)]="form.name">
           </div>
           <div class="form-group">
-            <label for="email">Email address <span *ngIf="emailError" style="font-size:10px;font-weight:200; color: red">Required</span></label>
-            <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" value="email"
-                   placeholder="Enter email" name="email" required [(ngModel)]="form.email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <label for="email">Email address
+              <span *ngIf="emailError" style="font-size:10px;font-weight:200; color: red">Required</span>
+            </label>
+            <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" value="email" placeholder="Enter email"
+              name="email" required [(ngModel)]="form.email">
 
           </div>
           <div class="form-group">
-            <label for="phone">Phone Number <span *ngIf="phoneError" style="font-size:10px;font-weight:200; color: red">Required</span></label>
-            <input type="number" class="form-control form-control-sm" id="phone" placeholder="Enter Mobile Number" required [(ngModel)]="form.phone" name="phone" value="phone">
+            <label for="phone">Phone Number
+              <span *ngIf="phoneError" style="font-size:10px;font-weight:200; color: red">Required</span>
+            </label>
+            <input type="number" class="form-control form-control-sm" id="phone" placeholder="Enter Mobile Number" required [(ngModel)]="form.phone"
+              name="phone" value="phone">
           </div>
           <div class="form-group">
-            <label for="address1">Address <span *ngIf="addressError" style="font-size:10px;font-weight:200; color: red">Required</span></label>
-            <input type="text" class="form-control form-control-sm" id="address1" placeholder="Enter first address line"
-                   required [(ngModel)]="form.address1" name="address1" value="address1">
-            <input type="text" class="form-control form-control-sm" id="address2" placeholder="Enter second address line"
-                   style="margin-top:3px" required [(ngModel)]="form.address2" name="address2" value="address2">
-            <input type="text" class="form-control form-control-sm" id="address3" placeholder="Enter third address line"
-                   style="margin-top:3px" required [(ngModel)]="form.address3" name="address3" value="address3">
+            <label for="address1">Address
+              <span *ngIf="addressError" style="font-size:10px;font-weight:200; color: red">Required</span>
+            </label>
+            <input type="text" class="form-control form-control-sm" id="address1" placeholder="Enter first address line" required [(ngModel)]="form.address1"
+              name="address1" value="address1">
+            <input type="text" class="form-control form-control-sm" id="address2" placeholder="Enter second address line" style="margin-top:3px"
+              required [(ngModel)]="form.address2" name="address2" value="address2">
+            <input type="text" class="form-control form-control-sm" id="address3" placeholder="Enter third address line" style="margin-top:3px"
+              required [(ngModel)]="form.address3" name="address3" value="address3">
           </div>
           <div class="form-group">
-            <label for="password">Password <span *ngIf="passwordError" style="font-size:10px;font-weight:200; color: red">Password shold be minimum of 8 characters and both should be equal</span></label>
-            <input type="password" class="form-control form-control-sm" id="password" placeholder="Enter New Password" required [(ngModel)]="form.password" name="password" value="password">
+            <label for="password">Password
+              <span *ngIf="passwordError" style="font-size:10px;font-weight:200; color: red">Password shold be minimum of 8 characters and both should be equal</span>
+            </label>
+            <input type="password" class="form-control form-control-sm" id="password" placeholder="Enter New Password" required [(ngModel)]="form.password"
+              name="password" value="password">
             <label for="passwordre">Re-Enter Password</label>
-            <input type="password" class="form-control form-control-sm" id="passwordre" placeholder="Enter New Password" required [(ngModel)]="form.passwordre" name="passwordre"  value="passwordre">
+            <input type="password" class="form-control form-control-sm" id="passwordre" placeholder="Enter New Password" required [(ngModel)]="form.passwordre"
+              name="passwordre" value="passwordre">
           </div>
 
           <div class="form-group">
             <label>Profile Picture</label>
             <input type="file" name="picture" (change)="fileChange(input)" #input/>
-            <img [attr.src]='file_srcs[0]' alt=""/>
+            <img [attr.src]='file_srcs[0]' alt="" />
             <button>Clear</button>
           </div>
 
           <div class="form-group">
             <label for="phone">Register As an ADMIN</label>
             <input type="checkbox" [checked]="register_as_admin" (change)="asAdmin()" />
-            <input *ngIf="register_as_admin" type="password" class="form-control form-control-sm" id="pw" placeholder="Enter Super Admin Key" [(ngModel)]="form.SuPw" name="SuPw"  value="SuPw">
+            <input *ngIf="register_as_admin" type="password" class="form-control form-control-sm" id="pw" placeholder="Enter Super Admin Key"
+              [(ngModel)]="form.SuPw" name="SuPw" value="SuPw">
           </div>
           <button type="Submit" class="btn btn-primary float-right" (click)="onSubmit(form.value)">Submit</button>
         </form>
@@ -55,4 +69,3 @@
     </div>
   </div>
 </div>
-

@@ -3,6 +3,8 @@
         <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3" style="margin-top:10%">
             <div class="account-wall">
                 <img class="profile-img" src="assets/img/logo.png" alt="">
+
+                <span *ngIf="logingError" style="font-size:10px;font-weight:200; color: red">login Failed</span>
                 <form class="form-signin" [formGroup]="_loginForm">
 
                     <input type="text" class="form-control form-control-sm" placeholder="Email" required autofocus formControlName="email">
@@ -13,7 +15,6 @@
 
                     <a href="/register" class="text-center new-account">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Create an account </a>
-                        
                 </form>
             </div>
         </div>

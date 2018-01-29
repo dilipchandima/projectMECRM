@@ -13,6 +13,7 @@ export class LoginComponent {
 
 
     public _loginForm: FormGroup;
+    logingError = false;
     public _loginObj: {
         email: string,
         password: string
@@ -38,6 +39,7 @@ export class LoginComponent {
             .subscribe((res) => {
                 console.log(res, res._body.userRole);
                 if (res.status === 200) {
+                    this.logingError = false;
                     const obj = JSON.parse(res._body);
                     console.log(obj)
                     localStorage.setItem('userRole', obj.userRole);
@@ -45,6 +47,9 @@ export class LoginComponent {
                     this.router.navigate(['/user'], { queryParams: { userId: obj.userId } });
                 }
             },
-            (err) => { console.log(err); });
+            (err) => {
+                console.log(err);
+                this.logingError = true
+            });
     }
 }

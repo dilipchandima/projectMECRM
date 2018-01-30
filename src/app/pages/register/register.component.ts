@@ -95,6 +95,8 @@ export class RegisterComponent {
           if (res.status === 201) {
             this.registrationFail = false;
             this.router.navigate(['../login']);
+          } else {
+            this.registrationFail = true;
           }
         },
         (err) => {

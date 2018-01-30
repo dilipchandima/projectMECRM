@@ -45,6 +45,8 @@ export class LoginComponent {
                     localStorage.setItem('userRole', obj.userRole);
                     localStorage.setItem('user_id', obj.userId);
                     this.router.navigate(['/user'], { queryParams: { userId: obj.userId } });
+                } else {
+                    this.logingError = true
                 }
             },
             (err) => {

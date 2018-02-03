@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 
 export class AdminDashboardComponent {
 
-  private allJobs: Array<any>;
-  private allUsers: Array<any>;
-  private jobs: Array<any>;
+   allJobs: Array<any>;
+   allUsers: Array<any>;
+   jobs: Array<any>;
   _ststusKeys = ["ALL", "ENQUIRY", "COMPLETE", "ISSUED", "ACCEPTED", "COMMENCED", "SCHEDULED", "CANCELLED"]
   filteringStatus = "ALL";
 

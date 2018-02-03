@@ -13,8 +13,8 @@ import { JobService } from '../../services/job.service';
 export class UserComponent {
 
     _isAdmin = false;
-    private user: any;
-    private allJobs: Array<any>;
+     user: any;
+     allJobs: Array<any>;
     jobs: Array<any>;
     _ststusKeys = ["ALL", "ENQUIRY", "COMPLETE", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"]
     filteringStatus = "ALL";

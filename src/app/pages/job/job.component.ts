@@ -14,8 +14,8 @@ import { NoteService } from "../../services/note.service";
 export class JobComponent {
 
     _isAdmin = false;
-    private notes: Array<any>;
-    private job: any = {
+     notes: Array<any>;
+     job: any = {
         job_address: "wewew",
         job_status: "ISSUED"
     };
@@ -29,7 +29,7 @@ export class JobComponent {
         jobId: number,
         description: string,
         role: string
-    } = { date: "", time: "", jobId: 0, description: "" , role: ""};
+    } = { date: "", time: "", jobId: 0, description: "", role: "" };
 
     _ststusKeys = ["ENQUIRY", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED", "COMPLETE"];
     filteringStatus = "";

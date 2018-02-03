@@ -40,3 +40,4 @@ create table note(
 	PRIMARY KEY(note_id),
 	FOREIGN KEY (job_id) REFERENCES job(job_id)
 );
+

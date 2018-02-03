@@ -45,12 +45,7 @@ import {CookieService} from 'ngx-cookie-service';
   ],
   bootstrap:
     [
-      AppComponent,
-      LoginComponent,
-      RegisterComponent,
-      AdminDashboardComponent,
-      JobComponent,
-      UserComponent
+      AppComponent
     ]
 })
 export class AppModule { }

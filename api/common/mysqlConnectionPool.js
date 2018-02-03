@@ -4,7 +4,7 @@ var config = require('./config');
 module.exports = mysql.createPool({
     connectionLimit: 12500,
     host:'localhost',
-    user:'electric',
+    user:'root',
     password:'root',
-    database:'root'
+    database:'electric'
 });

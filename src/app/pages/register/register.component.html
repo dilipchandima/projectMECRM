@@ -18,8 +18,10 @@
               <span *ngIf="emailError" style="font-size:10px;font-weight:200; color: red">Required</span>
             </label>
             <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" value="email" placeholder="Enter email"
-              name="email" required [(ngModel)]="form.email">
-
+              name="email" required [(ngModel)]="form.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #contactemail="ngModel">
+              <div style="font-size:10px;font-weight:200; color: red"  *ngIf="contactemail.errors && contactemail.errors.pattern">
+                Please add valid e-mail
+            </div>
           </div>
           <div class="form-group">
             <label for="phone">Phone Number
@@ -63,7 +65,7 @@
             <input *ngIf="register_as_admin" type="password" class="form-control form-control-sm" id="pw" placeholder="Enter Super Admin Key"
               [(ngModel)]="form.SuPw" name="SuPw" value="SuPw">
           </div>
-          <button type="Submit" class="btn btn-primary float-right" (click)="onSubmit(form.value)">Submit</button>
+          <button [disabled]="contactemail.errors && contactemail.errors.pattern" type="Submit" class="btn btn-primary float-right" (click)="onSubmit(form.value)">Submit</button>
         </form>
       </div>
     </div>

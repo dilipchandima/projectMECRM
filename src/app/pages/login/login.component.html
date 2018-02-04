@@ -10,7 +10,7 @@
                     <input type="text" class="form-control form-control-sm" placeholder="Email" required autofocus formControlName="email">
                     <input type="password" class="form-control form-control-sm" placeholder="Password" required formControlName="password">
 
-                    <button class="btn btn-sm btn-primary btn-block" type="submit" (click)="loginUser()">
+                    <button [disabled]="_loginForm.invalid" class="btn btn-sm btn-primary btn-block" type="submit" (click)="loginUser()">
                         Sign in</button>
 
                     <a href="/register" class="text-center new-account">

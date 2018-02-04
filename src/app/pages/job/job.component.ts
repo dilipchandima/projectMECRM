@@ -49,7 +49,7 @@ export class JobComponent {
             this.job_accepted_quation = true;
             this.jobService.accepted({ jobId: this.job.job_id })
                 .subscribe((res) => {
-                    console.log("uPDATE SUSS", res);
+                    console.log("UPDATE SUSS", res);
                 }, (err) => {
                     console.log(err);
                 })
@@ -94,6 +94,7 @@ export class JobComponent {
     }
 
     onSubmit() {
+        console.log(this._form)
         this._form.value.jobId = this.job.job_id;
         this._form.value.date = this.getFormatedDate();
         this._form.value.time = this.getFormatedTime();

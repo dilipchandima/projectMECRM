@@ -41,3 +41,11 @@ create table note(
 	FOREIGN KEY (job_id) REFERENCES job(job_id)
 );
 
+drop table if exists super_keys;
+create table super_keys(
+	keys_id int not null AUTO_INCREMENT,
+	keys_super varchar(255),
+	PRIMARY KEY(keys_id)
+);
+
+INSERT INTO super_keys (keys_super) VALUES ("$upp#r^dm!nK@y");

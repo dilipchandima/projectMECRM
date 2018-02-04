@@ -87,11 +87,13 @@ textarea { resize: vertical; }
   }
 
   .view{
-    padding: 6px;
+    padding: 3px 5px;
     border-radius: 20px;
     color: #ffffff;
-    font-size: 12px;
+    font-size: 10px;
     background-color: #089dd8;
+    cursor: pointer;
+    display: inline-block;
   }
 
   .image-crm{

@@ -14,7 +14,7 @@ export class AdminDashboardComponent {
    allJobs: Array<any>;
    allUsers: Array<any>;
    jobs: Array<any>;
-  _ststusKeys = ["ALL", "ENQUIRY", "COMPLETE", "ISSUED", "ACCEPTED", "COMMENCED", "SCHEDULED", "CANCELLED"]
+  _ststusKeys =  ["ALL", "ENQUIRY", "COMPLETE", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"]
   filteringStatus = "ALL";
 
   constructor(

@@ -46,11 +46,37 @@ exports.user_signup = (req, res, next) => {
 
   let validate_sql = 'SELECT * FROM user WHERE user_email =\'' + req.body.email + '\'';
 
-  if(req.body.role == "ADMIN" && req.body.SuPw != "$upp#r^dm!nK@y"){
-    return res.status(500).json({
-      message: "Worng Supper Admin Password !"
-    });
-  }
+  let getSuperAdminKey = "select keys_super from super_keys where keys_id=1;"
+
+  sqlConnectionPool.getConnection((err, connection) => {
+    if (err) {
+      return res.status(500).json({
+        message: "SQL Connection Error"
+      });
+    }
+    else {
+      connection.query(getSuperAdminKey, (sqlErr, results) => {
+        if (sqlErr) {
+          console.log(sqlErr);
+          return res.status(500).json({
+            message: "SQL Connection Error"
+          });
+        } else if (results.length > 0) {
+          if (results[0].keys_super != req.body.SuPw && req.body.role == "ADMIN") {
+            return res.status(500).json({
+              message: "Worng Supper Admin Password !"
+            });
+          }
+        }
+      })
+    }
+  });
+
+  // if (req.body.role == "ADMIN" && req.body.SuPw != "$upp#r^dm!nK@y") {
+  //   return res.status(500).json({
+  //     message: "Worng Supper Admin Password !"
+  //   });
+  // }
 
   sqlConnectionPool.getConnection((err, connection) => {
     if (err) {
@@ -251,3 +277,34 @@ exports.user_getByName = (req, res, next) => {
   })
 };
 
+exports.user_delete = (req, res, next) => {
+  const id = req.params.id;
+  let sql = 'SELECT * FROM user WHERE user_id =\'' + id + '\'';
+  sqlConnectionPool.getConnection((err, connection) => {
+    if (err) {
+      return res.status(204).json({
+        message: "SQL Error"
+      });
+    }
+    else {
+      connection.query(sql, (sqlErr, results) => {
+        if (sqlErr) {
+          console.log(sqlErr);
+          return res.status(204).json({
+            message: "No existing Users"
+          });
+        } else if (results.length > 0) {
+          return res.status(200).json({
+            message: "retrive successful",
+            data: results
+          });
+        } else {
+          return res.status(204).json({
+            message: "No existing Users"
+          });
+        }
+      });
+
+    }
+  })
+};

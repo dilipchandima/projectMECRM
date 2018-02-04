@@ -18,6 +18,7 @@
             <h5>{{user?.user_address2}}</h5>
             <h5>{{user?.user_address3}}</h5>
             <h5>{{user?.user_phone}}</h5>
+            <span *ngIf="_isAdmin && jobs?.length == 0" class="view" style="background: red" (click)="deleteUser(user.user_id)">DELETE USER</span>
         </div>
         <div class="col-md-6 col-sm-12">
             <div class="account-wall">
@@ -35,7 +36,7 @@
                         <label for="description">Description</label>
                         <textarea formControlName="description" rows="3" class="form-control form-control-sm" id="description" placeholder="Enter description"></textarea>
                     </div>
-                    <button type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">Submit</button>
+                    <button [disabled]="_form.invalid" type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">Submit</button>
                 </form>
             </div>
         </div>
@@ -70,7 +71,10 @@
                         <td>
                             <span class="status" [ngClass]="{'issued': job?.job_status=='QUOTATION', 'accepted': job?.job_status=='ACCEPTED', 'scheduled': job?.job_status=='SCHEDULED', 'commenced': job?.job_status=='COMMENCED', 'completed': job?.job_status=='COMPLETED', 'enquiry': job?.job_status=='ENQUIRY', 'cancelled':job?.job_status=='CANCELLED'}">{{job?.job_status}}</span>
                         </td>
-                        <td><span class="view" (click)="goToNotes(job.job_id)"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> VIEW</span></td>
+                        <td>
+                            <span class="view" (click)="goToNotes(job.job_id)">VIEW</span>
+                            <span *ngIf="_isAdmin" class="view" style="background: red" (click)="deleteNotesAndJob(job.job_id)">DELETE</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -37,4 +37,6 @@ router.get("/getAll", checkAuth, UserController.user_getAll);
 router.get("/:id", checkAuth, UserController.user_getById);
 router.get("/byName/:name", checkAuth, UserController.user_getByName);
 
+router.delete("/:id", checkAuth, UserController.user_delete)
+
 module.exports = router;

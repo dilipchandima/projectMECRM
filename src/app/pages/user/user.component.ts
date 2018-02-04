@@ -13,8 +13,8 @@ import { JobService } from '../../services/job.service';
 export class UserComponent {
 
     _isAdmin = false;
-     user: any;
-     allJobs: Array<any>;
+    user: any;
+    allJobs: Array<any>;
     jobs: Array<any>;
     _ststusKeys = ["ALL", "ENQUIRY", "COMPLETE", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"]
     filteringStatus = "ALL";
@@ -35,6 +35,7 @@ export class UserComponent {
     }
 
     ngOnInit() {
+        this._isAdmin = (this.authService.checkUserRole() == "ADMIN") ? true : false;
         this.route
             .queryParams
             .subscribe(params => {
@@ -49,7 +50,7 @@ export class UserComponent {
                     .subscribe((res) => {
                         this.user = JSON.parse(res._body).data[0];
                         console.log(JSON.parse(res._body));
-                        this._isAdmin = (this.user.user_role == "ADMIN") ? true : false;
+                        // this._isAdmin = (this.user.user_role == "ADMIN") ? true : false;
                     },
                     (err) => { console.log(err); });
 
@@ -58,7 +59,11 @@ export class UserComponent {
                         if (res.status != 204) {
                             this.allJobs = JSON.parse(res._body).data;
                             this.filterJobs("ALL");
-                            console.log(JSON.parse(res._body));
+                            console.log("jobs",JSON.parse(res._body));
+                        }
+                        else {
+                            this.allJobs = [];
+                            this.filterJobs("ALL");
                         }
                     },
                     (err) => { console.log(err); });
@@ -117,5 +122,25 @@ export class UserComponent {
 
     statusChanged(status: string) {
         this.filterJobs(status);
+    }
+
+    deleteNotesAndJob(jobId: number) {
+        console.log("here you have to delete all the notes to this job and also the job, you have to create delete jobs with notes by job ID ");
+        var r = confirm("Are You sure you want to delete all the notes and the job you selected!");
+        if (r == true) {
+            console.log("You pressed OK!");
+        } else {
+            console.log("You pressed Cancel!");
+        }
+    }
+
+    deleteUser(userId: number) {
+        console.log("here you have to delete user, button is appered when user have no jobs and login user is an admin, you have to create delete user by userID");
+        var r = confirm("Are You sure you want to delete User - " + this.user.user_name + " !");
+        if (r == true) {
+            console.log("You pressed OK!");
+        } else {
+            console.log("You pressed Cancel!");
+        }
     }
 }

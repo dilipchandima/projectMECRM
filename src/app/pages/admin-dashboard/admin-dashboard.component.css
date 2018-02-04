@@ -41,4 +41,6 @@
   color: #ffffff;
   font-size: 12px;
   background-color: #089dd8;
+  cursor: pointer;
+  display: inline-block;
 }

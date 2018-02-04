@@ -159,6 +159,7 @@ export class RegisterComponent {
           this.debug_size_after.push(after);
           this.file_srcs.push(resized_jpeg);
           this.readFiles(files, index + 1);
+          this.form.picture = resized_jpeg;
         });
       });
     } else {
@@ -194,7 +195,7 @@ export class RegisterComponent {
   readFile(file, reader, callback) {
     reader.onload = () => {
       callback(reader.result);
-      this.form.picture = reader.result;
+      // this.form.picture = reader.result;
     };
     reader.readAsDataURL(file);
   }

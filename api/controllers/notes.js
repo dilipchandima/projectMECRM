@@ -104,3 +104,30 @@ exports.notes_create = (req, res, next) => {
         }
     })
 };
+
+exports.notes_delete = (req, res, next) => {
+  const id = req.params.id;
+  console.log(id);
+  let sql = 'DELETE FROM note WHERE job_id =\'' + id + '\'';
+  sqlConnectionPool.getConnection((err, connection) => {
+    if (err) {
+      return res.status(404).json({
+        message: "SQL Error"
+      });
+    }
+    else {
+      connection.query(sql, (sqlErr, results) => {
+        if (sqlErr) {
+          return res.status(404).json({
+            message: "No existing Users"
+          });
+        } else {
+          return res.status(204).json({
+            message: "Delete Successful"
+          });
+        }
+      });
+
+    }
+  })
+};

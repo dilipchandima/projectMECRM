@@ -233,4 +233,32 @@ exports.job_accepted = (req, res, next) => {
             });
         }
     })
-}
+};
+
+exports.job_delete = (req, res, next) => {
+  const id = req.params.id;
+  console.log(id);
+  let sql = 'DELETE FROM job WHERE job_id =\'' + id + '\'';
+  sqlConnectionPool.getConnection((err, connection) => {
+    if (err) {
+      return res.status(404).json({
+        message: "SQL Error"
+      });
+    }
+    else {
+      connection.query(sql, (sqlErr, results) => {
+        if (sqlErr) {
+          return res.status(404).json({
+            message: "No existing Users"
+          });
+        } else {
+          return res.status(204).json({
+            message: "Delete Successful"
+          });
+        }
+      });
+
+    }
+  })
+};
+

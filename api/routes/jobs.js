@@ -13,4 +13,5 @@ router.post("/create", checkAuth, JobsController.job_create);
 router.post("/update", checkAuth, JobsController.job_status_update);
 router.post("/accepted", checkAuth, JobsController.job_accepted);
 
+router.delete("/delete/:id", checkAuth, JobsController.job_delete);
 module.exports = router;

@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {JobService} from '../../services/job.service';
+import {NoteService} from "../../services/note.service";
 
 @Component({
   selector: 'user',
@@ -30,7 +31,8 @@ export class UserComponent {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private authService: AuthService,
-              private jobService: JobService) {
+              private jobService: JobService,
+              private noteService: NoteService) {
     this.createForm();
   }
 
@@ -131,7 +133,30 @@ export class UserComponent {
     console.log('here you have to delete all the notes to this job and also the job, you have to create delete jobs with notes by job ID ');
     const r = confirm('Are You sure you want to delete all the notes and the job you selected!');
     if (r === true) {
-      console.log('You pressed OK!');
+      this.noteService.deleteNotesByJobId(jobId)
+        .subscribe((res) => {
+            if (res.status == 204) {
+              console.log('Delete notes Successful');
+              this.jobService.deleteJobById(jobId)
+                .subscribe((res) => {
+                    if (res.status == 204) {
+                      console.log('Delete job Successful');
+                      // this.router.navigate(['/user']);
+                      window.location.reload(true);
+                    } else {
+                      console.log('Delete job Failure');
+                    }
+                  },
+                  (err) => {
+                    console.log(err);
+                  });
+            } else {
+              console.log('Delete notes Failure');
+            }
+          },
+          (err) => {
+            console.log(err);
+          });
     } else {
       console.log('You pressed Cancel!');
     }

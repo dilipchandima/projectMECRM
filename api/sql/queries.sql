@@ -37,3 +37,7 @@ WHERE u.user_id = j.user_id AND u.user_id = 1 AND j.job_id = n.job_id;
 /*get all notes details by user_id*/
 SELECT n.note_id,n.note_date FROM user As u, note AS n, job As j
 WHERE u.user_id = 1 AND u.user_id = j.user_id AND j.job_id = n.job_id;
+
+/*delete user by id*/
+DELETE FROM user
+WHERE user_id = id;

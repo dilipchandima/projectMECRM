@@ -14,7 +14,7 @@ export class AppComponent {
   error = "";
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router ) {
   }
 
@@ -28,7 +28,7 @@ export class AppComponent {
     }
     else{
       this._isError=true;
-      this.error = "You don't have permisions to view dashboard"
+      this.error = "You don't have permisions to view dashboard";
       setTimeout(()=> {
         this._isError = false;
       }, 3000)

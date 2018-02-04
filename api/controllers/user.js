@@ -279,28 +279,23 @@ exports.user_getByName = (req, res, next) => {
 
 exports.user_delete = (req, res, next) => {
   const id = req.params.id;
-  let sql = 'SELECT * FROM user WHERE user_id =\'' + id + '\'';
+  console.log(id);
+  let sql = 'DELETE FROM user WHERE user_id =\'' + id + '\'';
   sqlConnectionPool.getConnection((err, connection) => {
     if (err) {
-      return res.status(204).json({
+      return res.status(404).json({
         message: "SQL Error"
       });
     }
     else {
       connection.query(sql, (sqlErr, results) => {
         if (sqlErr) {
-          console.log(sqlErr);
-          return res.status(204).json({
+          return res.status(404).json({
             message: "No existing Users"
-          });
-        } else if (results.length > 0) {
-          return res.status(200).json({
-            message: "retrive successful",
-            data: results
           });
         } else {
           return res.status(204).json({
-            message: "No existing Users"
+            message: "Delete Successful"
           });
         }
       });

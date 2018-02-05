@@ -18,7 +18,7 @@ export class UserComponent {
   user: any;
   allJobs: Array<any>;
   jobs: Array<any>;
-  _ststusKeys = ["ALL", "ENQUIRY", "COMPLETED", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"];
+  _ststusKeys = ["ALL", "ENQUIRY", "QUOTATION", "SCHEDULED", "COMMENCED", "COMPLETED", "CANCELLED"];
   filteringStatus = 'ALL';
 
   public _form: FormGroup;

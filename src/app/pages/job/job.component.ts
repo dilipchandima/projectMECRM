@@ -31,7 +31,7 @@ export class JobComponent {
         role: string
     } = { date: "", time: "", jobId: 0, description: "", role: "" };
 
-    _ststusKeys = ["ENQUIRY", "COMPLETED", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"];
+    _ststusKeys =["ENQUIRY", "QUOTATION", "SCHEDULED", "COMMENCED", "COMPLETED", "CANCELLED"];
     filteringStatus = "";
 
     constructor(private route: ActivatedRoute,

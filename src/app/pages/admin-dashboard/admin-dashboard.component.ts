@@ -15,7 +15,7 @@ export class AdminDashboardComponent {
   allJobs: Array<any>;
   allUsers: Array<any>;
   jobs: Array<any>;
-  _ststusKeys = ["ALL", "ENQUIRY", "COMPLETED", "QUOTATION", "COMMENCED", "SCHEDULED", "CANCELLED"]
+  _ststusKeys = ["ALL", "ENQUIRY", "QUOTATION", "SCHEDULED", "COMMENCED", "COMPLETED", "CANCELLED"];
   filteringStatus = "ALL";
   _isSuperError = false;
   _superAdminChanged = false;

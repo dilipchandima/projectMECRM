@@ -72,7 +72,7 @@ export class RegisterComponent {
       this.phoneError = false;
       this.addressError = false;
 
-      console.log(data);
+      // console.log(data);
       this.form.name = data.name;
       this.form.email = data.email;
       this.form.phone = data.phone;
@@ -87,11 +87,11 @@ export class RegisterComponent {
       } else {
         this.form.role = "USER";
       }
-      console.log(this.form);
+      // console.log(this.form);
       // this.router.navigate(['../login']);
       this.registrationService.signup(this.form)
         .subscribe((res) => {
-          console.log(res, res._body.userRole);
+          // console.log(res, res._body.userRole);
           if (res.status === 201) {
             this.registrationFail = false;
             this.router.navigate(['../login']);

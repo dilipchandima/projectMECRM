@@ -34,14 +34,14 @@ export class LoginComponent {
     }
 
     loginUser() {
-        console.log(this._loginForm.value);
+        // console.log(this._loginForm.value);
         this.authServise.login(this._loginForm.value)
             .subscribe((res) => {
-                console.log(res, res._body.userRole);
+                // console.log(res, res._body.userRole);
                 if (res.status === 200) {
                     this.logingError = false;
                     const obj = JSON.parse(res._body);
-                    console.log(obj)
+                    // console.log(obj)
                     localStorage.setItem('userRole', obj.userRole);
                     localStorage.setItem('user_id', obj.userId);
                     this.router.navigate(['/user'], { queryParams: { userId: obj.userId } });

@@ -147,8 +147,15 @@ export class UserComponent {
                   console.log('Delete job Successful');
                   // this.router.navigate(['/user']);
                   // window.location.reload(true);
-                  this.allJobs = [];
-                  this.filterJobs("ALL");
+                  this.jobService.getByUserID(this.user.user_id)
+                    .subscribe((res) => {
+                      this.allJobs = JSON.parse(res._body).data;
+                      this.filterJobs('ALL');
+                      console.log(this.allJobs);
+                    },
+                    (err) => {
+                      console.log(err);
+                    });
                 } else {
                   console.log('Delete job Failure');
                 }

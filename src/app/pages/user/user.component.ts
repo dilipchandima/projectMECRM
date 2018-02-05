@@ -119,13 +119,20 @@ export class UserComponent {
     if (status == 'ALL') {
       this.jobs = this.allJobs;
     } else {
-      this.jobs = this.allJobs.filter((job) => {
-        if (job.job_status == status) {
-          return true;
-        } else {
-          return false;
-        }
-      });
+      this.jobService.getByUserID(this.user.user_id)
+        .subscribe((res) => {
+          if (res.status != 204) {
+            this.allJobs = JSON.parse(res._body).data;
+            this.filterJobs('ALL');
+            console.log('jobs', JSON.parse(res._body));
+          } else {
+            this.allJobs = [];
+            this.filterJobs('ALL');
+          }
+        },
+        (err) => {
+          console.log(err);
+        });
     }
   }
 
@@ -149,9 +156,14 @@ export class UserComponent {
                   // window.location.reload(true);
                   this.jobService.getByUserID(this.user.user_id)
                     .subscribe((res) => {
-                      this.allJobs = JSON.parse(res._body).data;
-                      this.filterJobs('ALL');
-                      console.log(this.allJobs);
+                      if (res.status != 204) {
+                        this.allJobs = JSON.parse(res._body).data;
+                        this.filterJobs('ALL');
+                        console.log('jobs', JSON.parse(res._body));
+                      } else {
+                        this.allJobs = [];
+                        this.filterJobs('ALL');
+                      }
                     },
                     (err) => {
                       console.log(err);

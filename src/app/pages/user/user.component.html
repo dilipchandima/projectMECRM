@@ -36,7 +36,6 @@
                         <label for="description">Description</label>
                         <textarea formControlName="description" rows="3" class="form-control form-control-sm" id="description" placeholder="Enter description"></textarea>
                     </div>
-                    {{_form.invalid}}
                     <button [disabled]="_form.invalid" type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">Submit</button>
                 </form>
             </div>

@@ -116,23 +116,18 @@ export class UserComponent {
   }
 
   filterJobs(status: string) {
-    if (status == 'ALL') {
+    if (status == "ALL") {
       this.jobs = this.allJobs;
-    } else {
-      this.jobService.getByUserID(this.user.user_id)
-        .subscribe((res) => {
-          if (res.status != 204) {
-            this.allJobs = JSON.parse(res._body).data;
-            this.filterJobs('ALL');
-            console.log('jobs', JSON.parse(res._body));
-          } else {
-            this.allJobs = [];
-            this.filterJobs('ALL');
-          }
-        },
-        (err) => {
-          console.log(err);
-        });
+    }
+    else {
+      this.jobs = this.allJobs.filter((job) => {
+        if (job.job_status == status) {
+          return true
+        }
+        else {
+          return false;
+        }
+      });
     }
   }
 

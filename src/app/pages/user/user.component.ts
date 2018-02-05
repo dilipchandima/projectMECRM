@@ -146,7 +146,9 @@ export class UserComponent {
                 if (res.status == 204) {
                   console.log('Delete job Successful');
                   // this.router.navigate(['/user']);
-                  window.location.reload(true);
+                  // window.location.reload(true);
+                  this.allJobs = [];
+                  this.filterJobs("ALL");
                 } else {
                   console.log('Delete job Failure');
                 }

@@ -18,7 +18,7 @@
             <h5>{{user?.user_address2}}</h5>
             <h5>{{user?.user_address3}}</h5>
             <h5>{{user?.user_phone}}</h5>
-            <span *ngIf="_isAdmin && jobs?.length == 0" class="view" style="background: red" (click)="deleteUser(user.user_id)">DELETE USER</span>
+            <span *ngIf="_isAdmin && allJobs?.length == 0 && !_isSameUser" class="view" style="background: red" (click)="deleteUser(user.user_id)">DELETE USER</span>
         </div>
         <div class="col-md-6 col-sm-12">
             <div class="account-wall">
@@ -36,6 +36,7 @@
                         <label for="description">Description</label>
                         <textarea formControlName="description" rows="3" class="form-control form-control-sm" id="description" placeholder="Enter description"></textarea>
                     </div>
+                    {{_form.invalid}}
                     <button [disabled]="_form.invalid" type="button" class="btn btn-sm btn-primary" (click)="onSubmit()">Submit</button>
                 </form>
             </div>

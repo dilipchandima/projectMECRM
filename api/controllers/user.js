@@ -303,3 +303,95 @@ exports.user_delete = (req, res, next) => {
     }
   })
 };
+
+exports.get_superAdminKey = (req, res, next) => {
+  let sql = 'SELECT * FROM super_keys WHERE keys_id =1';
+  sqlConnectionPool.getConnection((err, connection) => {
+    if (err) {
+      return res.status(204).json({
+        message: "SQL Error"
+      });
+    }
+    else {
+      connection.query(sql, (sqlErr, results) => {
+        if (sqlErr) {
+          console.log(sqlErr);
+          return res.status(204).json({
+            message: "No existing ADMIN key"
+          });
+        } else if (results.length > 0) {
+          return res.status(200).json({
+            message: "retrive successful",
+            data: results
+          });
+        } else {
+          return res.status(204).json({
+            message: "No existing ADMIN key"
+          });
+        }
+      });
+
+    }
+  })
+}
+
+exports.update_superAdminKey = (req, res, next) => {
+
+  let sql = "SELECT * FROM super_keys WHERE keys_super = '" + req.body.key + "';";
+
+  let sql_update = "UPDATE super_keys SET keys_super = '"
+    + req.body.newKey + "' WHERE keys_super = '"
+    + req.body.key + "';";
+
+  sqlConnectionPool.getConnection((err, connection) => {
+    if (err) {
+      return res.status(204).json({
+        message: "SQL Error"
+      });
+    }
+    else {
+      connection.query(sql, (sqlErr, results) => {
+
+        console.log(results)
+        if (sqlErr) {
+          console.log(sqlErr);
+          return res.status(204).json({
+            message: "No existing ADMIN key"
+          });
+        } else if (results.length == 0) {
+          return res.status(204).json({
+            message: "No existing ADMIN key"
+          });
+        } else {
+          sqlConnectionPool.getConnection((err, connection) => {
+            if (err) {
+              return res.status(204).json({
+                message: "SQL Error"
+              });
+            }
+            else {
+              connection.query(sql_update, (sqlErr, results) => {
+
+                console.log(results)
+                if (sqlErr) {
+                  console.log(sqlErr);
+                  return res.status(204).json({
+                    message: "No existing ADMIN key"
+                  });
+                } else {
+                  return res.status(200).json({
+                    message: "DONE",
+                    data: results
+                  });
+                }
+              });
+
+            }
+          })
+        }
+      });
+
+    }
+  })
+
+}

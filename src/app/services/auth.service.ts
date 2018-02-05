@@ -16,6 +16,7 @@ export class AuthService {
   private getUserUrl = '/api/user/';
   private getAllUsersURL = '/api/user/getAll';
   private deleteUserByIdURL = '/api/user/delete/';
+  private updateSuperAdminKeyURL = 'api/user/superAdmin/update';
 
   redirectUrl: string;
   cookieValue = 'UNKNOWN';
@@ -49,10 +50,10 @@ export class AuthService {
   }
 
   deleteUserById(userId: number): Observable<any> {
-    // return this.http.delete(this.deleteUserByIdURL, userId,{headers: this.headers});
-    // return this.http.delete(this.deleteUserByIdURL,);
-    // const search = new URLSearchParams();
-    // search.set('id', userId.toString());
     return this.http.delete(this.deleteUserByIdURL + userId, {headers: this.headers});
+  }
+
+  updateSuperAdminKey(data: {key: string, newKey: string}){
+    return this.http.post(this.updateSuperAdminKeyURL, data, {headers: this.headers})
   }
 }
